@@ -22,7 +22,7 @@ export class Login extends Component {
                     {/* twitter icon */}
                     <Image style={styles.img} source={icon} />
                     {/* twitter font */}
-                    <Text style={globalStyle.text_lg}>Twitter</Text>
+                    <Text style={styles.text_lg}>Twitter</Text>
                     {/* user inputs */}
                     <View style={globalStyle.inputContainer}>
                         <TextInput inputName={"logUsername"}/>

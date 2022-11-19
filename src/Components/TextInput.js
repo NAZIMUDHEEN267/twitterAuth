@@ -29,19 +29,21 @@ export class Input extends Component {
   }
 
   render() {
-    return (
-      <TextInput
-        onFocus={() => this.setState({ [this.borderClr]: "#276ec4"})}
-        onBlur={() => this.setState({ [this.borderClr]: "#999" })}
-        style={[styles.input, styles.mb, { borderColor: this.state[this.borderClr]}]}
-        keyboardType={"default"}
-        autoFocus={this.props.inputName === "logUsername" ? true : false}
-        placeholder={this.props.inputName.slice(3)}
-        value={this.state[this.props.inputName]}
-        onChangeText={(text) => this.setState({ [this.props.inputName]: text })}
-      />
-    )
-  }
+      return (
+        <TextInput
+          onFocus={() => this.setState({ [this.borderClr]: "#276ec4" })}
+          onBlur={() => this.setState({ [this.borderClr]: "#999" })}
+          style={[styles.input, styles.mb, { borderColor: this.state[this.borderClr] }]}
+          keyboardType={"default"}
+          autoFocus={this.props.inputName === "logUsername" ? true : false}
+          placeholder={this.props.inputName.slice(3)}
+          value={this.state[this.props.inputName]}
+          onChangeText={(text) => this.setState({ [this.props.inputName]: text })}
+          keyboardType={this.props.type}
+          secureTextEntry={this.props.secure ? true : false}
+        />
+      )
+    }
 }
 
 export default Input;

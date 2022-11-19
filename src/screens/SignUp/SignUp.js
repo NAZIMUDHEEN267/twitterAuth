@@ -10,7 +10,12 @@ import globalStyle from "../Global.styles";
 export class SignUp extends Component {
 
     // array used for flatlist
-    list = ["sigUsername", "sigEmail", "sigMobile", "sigPassword"];
+    list = [
+        { name: "sigUsername", type: "default"},
+        { name: "sigEmail", type: "email-address"},
+        { name: "sigMobile", type: "number-pad"},
+        { name: "sigPassword", type: "default" }
+    ];
 
     render() {
         return (
@@ -23,14 +28,18 @@ export class SignUp extends Component {
                     <Image source={Twitter} style={styles.nav_img} />
                 </View>
                 {/* headline text */}
-                <Text style={globalStyle.text_lg}>Create your account</Text>
+                <Text style={styles.headline}>Create your account</Text>
                 {/* user inputs */}
                 <View style={globalStyle.parent}>
                     <FlatList
                         data={this.list}
                         style={globalStyle.inputContainer}
                         keyExtractor={(item, index) => item + index}
-                        renderItem={({ item }) => <TextInput inputName={item} />}
+                        renderItem={({ item, index }) => (
+                            (index === this.list.length - 1) ? 
+                                <TextInput inputName={item.name} type={item.type} secure={true}/> :
+                                <TextInput inputName={item.name} type={item.type} />
+                        ) }
                     />
                 </View>
                 {/* sign up button */}

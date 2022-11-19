@@ -7,12 +7,6 @@ const globalStyle = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center"
     },
-    text_lg: {
-        fontSize: 23,
-        fontFamily: "MarkoOne-Regular",
-        color: "#fff",
-        marginTop: 15
-    },
     parent: {
         width: "80%",
         alignItems: "center"
