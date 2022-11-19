@@ -29,12 +29,15 @@ export class Input extends Component {
   }
 
   render() {
+
       return (
         <TextInput
           onFocus={() => this.setState({ [this.borderClr]: "#276ec4" })}
           onBlur={() => this.setState({ [this.borderClr]: "#999" })}
-          style={[styles.input, styles.mb, { borderColor: this.state[this.borderClr] }]}
-          keyboardType={"default"}
+          style={(!this.props.borderBtm) ? 
+            [styles.input, styles.mb, { borderColor: this.state[this.borderClr] }] :
+            {...styles.input, ...styles.borderBottom}
+           }
           autoFocus={this.props.inputName === "logUsername" ? true : false}
           placeholder={this.props.inputName.slice(3)}
           value={this.state[this.props.inputName]}
@@ -60,4 +63,10 @@ const styles = StyleSheet.create({
   mb: {
     marginBottom: 14,
   },
+  borderBottom: {
+    padding: 0,
+    borderTopWidth: 0,
+    borderLeftWidth: 0,
+    borderRightWidth: 0
+  }
 });

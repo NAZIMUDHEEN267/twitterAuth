@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { View } from "react-native";
+import FullPhoneNumber from "./screens/FullPhoneNumber";
 import Login from "./screens/Login/Login";
 import SignUp from "./screens/SignUp/SignUp";
 

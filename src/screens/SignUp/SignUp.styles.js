@@ -23,5 +23,14 @@ export default StyleSheet.create({
         position: "absolute",
         left: 15,
         top: 10
+    },
+    mobile: {
+        flexDirection: "row",
+        alignItems: "center",
+        borderWidth: 2,
+        borderColor: "#999",
+        borderRadius: 22,
+        marginBottom: 14,
+        paddingBottom: 10
     }
 });
