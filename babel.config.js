@@ -4,10 +4,10 @@ module.exports = {
    [
     'module-resolver',
     {
-      root: ['./src'],
-      extensions: [
-        '.js'
-      ]
+      "alias": {
+        "Images": "./src/assets/Images",
+        "Components": "./src/Components"
+      }
     }
    ]
   ]

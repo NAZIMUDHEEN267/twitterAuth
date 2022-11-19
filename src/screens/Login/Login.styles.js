@@ -28,27 +28,6 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         // backgroundColor: "yellow"
     },
-    input: {
-        width: "100%",
-        padding: 16,
-        backgroundColor: "#fff",
-        color: "#000",
-        borderRadius: 22,
-        borderWidth: 2,
-        borderColor: "transparent"
-    },
-    mb: {
-        marginBottom: 14,
-    },
-    btn_cta: {
-        width: "80%"
-    },
-    btn_text: {
-        textAlign: "center",
-        fontWeight: "600",
-        fontSize: 15,
-        color: "#0983ed"
-    },
     text_sm: {
         marginTop: 15,
         color: "#544"
