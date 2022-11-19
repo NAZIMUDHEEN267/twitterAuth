@@ -42,7 +42,7 @@ export class SignUp extends Component {
                     <View style={globalStyle.inputContainer}>
                         {/* separate mobile text input for getting country code */}
                         <View style={styles.mobile}>
-                            <TouchableOpacity>
+                            <TouchableOpacity style={styles.code}>
                                 <Text>{`${this.state.emoji} ${this.state.code}`}</Text>
                             </TouchableOpacity>
                             <TextInput inputName={"sigMobile"} type={"number-pad"} borderBtm={true}/>

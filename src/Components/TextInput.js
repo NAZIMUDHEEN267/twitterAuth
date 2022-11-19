@@ -65,8 +65,11 @@ const styles = StyleSheet.create({
   },
   borderBottom: {
     padding: 0,
+    borderRadius: 0,
     borderTopWidth: 0,
     borderLeftWidth: 0,
-    borderRightWidth: 0
+    borderRightWidth: 0,
+    flex: .8,
+    height: "70%",
   }
 });

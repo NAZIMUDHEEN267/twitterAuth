@@ -27,10 +27,17 @@ export default StyleSheet.create({
     mobile: {
         flexDirection: "row",
         alignItems: "center",
+        height: 60,
         borderWidth: 2,
         borderColor: "#999",
         borderRadius: 22,
         marginBottom: 14,
-        paddingBottom: 10
+        paddingLeft: 10,
+        paddingRight: 15
+    },
+    code: {
+        flex: .2,
+        height: "90%",
+        justifyContent: "center",
     }
 });
