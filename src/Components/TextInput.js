@@ -5,26 +5,32 @@ export class Input extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
-      passwd: "",
-      userBorderColor: "transparent",
-      passwdBorderColor: "transparent"
+      logUsername: "",
+      logPassword: "",
+      logUserBorderClr: "transparent",
+      logPasswordBorderClr: "transparent"
     }
 
     this.inputRef = React.createRef();
   }
 
-  borderClr = `${this.props.inputName}BorderColor`;
+  borderClr = `${this.props.inputName}BorderClr`;
+
+  componentDidUpdate() {
+    if(/\s/g.test(this.state.logUsername)) {
+      alert("Spaces are not allowed in Username")
+    }
+  }
 
   render() {
     return (
       <TextInput ref={this.inputRef}
-        onFocus={() => this.setState({ [this.borderClr]: "#08409c"})}
+        onFocus={() => this.setState({ [this.borderClr]: "#276ec4"})}
         onBlur={() => this.setState({ [this.borderClr]: "transparent" })}
         style={[styles.input, styles.mb, { borderColor: this.state[this.borderClr]}]}
         keyboardType={"default"}
-        autoFocus={this.props.inputName === "username" ? true : false}
-        placeholder={this.props.inputName}
+        autoFocus={this.props.inputName === "logUsername" ? true : false}
+        placeholder={this.props.inputName.slice(3)}
         value={this.state[this.props.inputName]}
         onChangeText={(text) => this.setState({ [this.props.inputName]: text })}
       />

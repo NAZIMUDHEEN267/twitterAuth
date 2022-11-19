@@ -24,8 +24,8 @@ export class Login extends Component {
                     <Text style={styles.text_lg}>Twitter</Text>
                     {/* user inputs */}
                     <View style={styles.inputContainer}>
-                        <TextInput inputName={"username"}/>
-                        <TextInput inputName={"passwd"} />
+                        <TextInput inputName={"logUsername"}/>
+                        <TextInput inputName={"logPassword"} />
                     </View>
                     {/* call to action button */}
                     <Button title={"Login"}/>
