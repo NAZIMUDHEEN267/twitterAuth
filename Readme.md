@@ -7,4 +7,5 @@ This is just like a authentication blueprint of ***twitter***. This project buil
 ## Technologies
 1. React-native
    1. babel-plugin-module-resolver 
+   2. react-native-vector-icons
 2. Google fonts

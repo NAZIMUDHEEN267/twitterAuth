@@ -2,6 +2,14 @@
   "migIndex": 1,
   "data": [
     {
+      "path": "src/assets/Fonts/AntDesign.ttf",
+      "sha1": "4e77868439280fb434d4697c7b911271406c81f3"
+    },
+    {
+      "path": "src/assets/Fonts/Feather.ttf",
+      "sha1": "e6604258b1ced5efd51360875d782fca65381d47"
+    },
+    {
       "path": "src/assets/Fonts/FiraSansCondensed-Bold.ttf",
       "sha1": "b5c83427d5a5b8849103e183aa6d879a12cf2eb7"
     },

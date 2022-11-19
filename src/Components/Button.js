@@ -9,12 +9,12 @@ export class Button extends Component {
     render() {
         return (
             <TouchableOpacity
-                style={[styles.input, styles.btn_cta]}
+                style={[styles.input, styles.btn_cta, {backgroundColor: this.props.bg}]}
                 underlayColor={"#555"}
                 activeOpacity={.8}
                 onPress={() => alert("hello")}
             >
-                <Text style={styles.btn_text}>{this.props.title}</Text>
+                <Text style={[styles.btn_text, { color: this.props.color }]}>{this.props.title}</Text>
             </TouchableOpacity>
         )
     }
@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
     input: {
         width: "100%",
         padding: 16,
-        backgroundColor: "#fff",
         color: "#000",
         borderRadius: 22,
         borderWidth: 2,
@@ -37,8 +36,7 @@ const styles = StyleSheet.create({
     },
     btn_text: {
         textAlign: "center",
-        fontWeight: "600",
+        fontWeight: "500",
         fontSize: 15,
-        color: "#0983ed"
     },
 })

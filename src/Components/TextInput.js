@@ -7,26 +7,32 @@ export class Input extends Component {
     this.state = {
       logUsername: "",
       logPassword: "",
-      logUserBorderClr: "transparent",
-      logPasswordBorderClr: "transparent"
+      sigUsername: "",
+      sigPassword: "",
+      sigMobile: "",
+      sigEmail: "",
+      logUserBorderClr: "#999",
+      logPasswordBorderClr: "#999",
+      sigUsernameBorderClr: "#999",
+      sigPasswordBorderClr: "#999",
+      sigMobileBorderClr: "#999",
+      sigEmailBorderClr: "#999",
     }
-
-    this.inputRef = React.createRef();
   }
 
   borderClr = `${this.props.inputName}BorderClr`;
 
   componentDidUpdate() {
-    if(/\s/g.test(this.state.logUsername)) {
+    if(/\s/g.test(this.state.logUsername || this.state.sigUsername)) {
       alert("Spaces are not allowed in Username")
     }
   }
 
   render() {
     return (
-      <TextInput ref={this.inputRef}
+      <TextInput
         onFocus={() => this.setState({ [this.borderClr]: "#276ec4"})}
-        onBlur={() => this.setState({ [this.borderClr]: "transparent" })}
+        onBlur={() => this.setState({ [this.borderClr]: "#999" })}
         style={[styles.input, styles.mb, { borderColor: this.state[this.borderClr]}]}
         keyboardType={"default"}
         autoFocus={this.props.inputName === "logUsername" ? true : false}
@@ -45,9 +51,9 @@ const styles = StyleSheet.create({
     width: "100%",
     padding: 16,
     backgroundColor: "#fff",
-    color: "#555",
     borderRadius: 22,
-    borderWidth: 3,
+    borderWidth: 2,
+    borderColor: "#999"
   },
   mb: {
     marginBottom: 14,
