@@ -15,3 +15,4 @@ This is just like a authentication blueprint of ***twitter***. This project buil
 ## helped sources
 - [country code](https://www.naroju.com/create-your-own-phone-number-input-in-react-native/)
 - [axios](https://blog.logrocket.com/using-axios-react-native-manage-api-requests/)
+- [pointerEvent](https://blog.logrocket.com/using-pointerevents-react-native/)
