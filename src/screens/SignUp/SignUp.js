@@ -13,8 +13,8 @@ export class SignUp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            emoji: "\ud83c\uddee\ud83c\uddf3",
-            code: "+91",
+            emoji: "",
+            code: "+ 0",
             isVisible: false
         }
     }
@@ -28,11 +28,11 @@ export class SignUp extends Component {
 
     // getCode is a callback function 
     getCode (item) {
-        this.setState({
-            code: item.phone,
-            emoji: item.emoji,
-            isVisible: true
-        })
+       this.setState({
+         emoji: item.emoji,
+         code: item.phone,
+         isVisible: false
+       })
     }
 
     // Overlay close/open methods
@@ -44,7 +44,7 @@ export class SignUp extends Component {
             <View style={globalStyle.bg}>
 
             {/* overlay for searching country code */}
-            <Overlay show={this.state.isVisible} close={this.closeOverlay} cb={this.getCode}/>
+            <Overlay show={this.state.isVisible} close={this.closeOverlay} cb={this.getCode.bind(this)}/>
 
                 {/* navbar */}
                 <View style={styles.nav}>

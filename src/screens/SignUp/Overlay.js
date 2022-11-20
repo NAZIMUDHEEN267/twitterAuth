@@ -18,29 +18,17 @@ export default class Overlay extends Component {
         this.state = {
             emoji: "",
             code: "",
-            input: ""
+            input: "",
         }
-    }
 
+    }
+    
     // data fetching 
     componentDidMount() {
         const data = require("../../data/countryCode.json");
         this.countries = data['countries'];
         this.countryList = this.countries;
-    }
-
-    call = (item) => this.props.cb(item)
-
-    // render item method => showing country list
-    renderItem({ item }) {
-        return (
-            <TouchableOpacity style={styles.list} onPress={(item) => this.call(item)}>
-                <View style={styles.listItem}>
-                    <Text style={styles.emoji}>{item.emoji}</Text>
-                    <Text style={styles.phone}>{item.phone}</Text>
-                    <Text style={styles.name}>{item.name}</Text>
-                </View>
-            </TouchableOpacity>)
+        this.cb = this.props.cb.bind(this);
     }
 
     // keyextractor method for flatlist
@@ -76,7 +64,14 @@ export default class Overlay extends Component {
                         <FlatList
                             keyExtractor={this.keyExtractor}
                             data={this.countryList}
-                            renderItem={this.renderItem}
+                            renderItem={({ item }) => (
+                                <TouchableOpacity style={styles.list} onPress={() => this.props.cb(item)}>
+                                    <View style={styles.listItem}>
+                                        <Text style={styles.emoji}>{item.emoji}</Text>
+                                        <Text style={styles.phone}>{item.phone}</Text>
+                                        <Text style={styles.name}>{item.name}</Text>
+                                    </View>
+                                </TouchableOpacity>)}
                         />
                     </View>
                 </View>
