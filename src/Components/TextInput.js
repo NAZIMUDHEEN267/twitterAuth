@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     borderLeftWidth: 0,
     borderRightWidth: 0,
     borderBottomWidth: 1,
-    flex: .8,
+    flex: .7,
     height: "70%",
   }
 });

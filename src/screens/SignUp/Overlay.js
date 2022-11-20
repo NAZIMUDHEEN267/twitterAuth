@@ -14,7 +14,6 @@ export default class Overlay extends Component {
 
     constructor(props) {
         super(props);
-
         this.state = {
             emoji: "",
             code: "",
@@ -22,7 +21,7 @@ export default class Overlay extends Component {
         }
 
     }
-    
+
     // data fetching 
     componentDidMount() {
         const data = require("../../data/countryCode.json");
@@ -53,9 +52,9 @@ export default class Overlay extends Component {
         // when the "show" prop is true then show the elements / otherwise don't
         if (this.props.show) {
             return (
-                <View style={[styles.container]}>
+                <View style={[styles.container]} pointerEvents="auto">
                     <View style={styles.overlay}>
-                        <Icon name="close" size={30} style={styles.icon} onPress={this.props.close}/>
+                        <Icon name="close" size={30} style={styles.icon} onPress={this.props.close} />
                         <View style={globalStyle.search}>
                             <Icon name="search1" size={20} style={{ marginRight: 10 }} />
                             <TextInput placeholder="search..." onChangeText={(text) => this.searching(text)} value={this.state.input} />

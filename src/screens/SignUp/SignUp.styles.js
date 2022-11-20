@@ -25,7 +25,7 @@ export default StyleSheet.create({
         top: 10
     },
     code: {
-        flex: .2,
+        flex: .3,
         height: "90%",
         justifyContent: "center",
     }
