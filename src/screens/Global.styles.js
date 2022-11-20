@@ -17,6 +17,17 @@ const globalStyle = StyleSheet.create({
         marginBottom: 15,
         // backgroundColor: "yellow"
     },
+    search: {
+        flexDirection: "row",
+        alignItems: "center",
+        height: 60,
+        borderWidth: 2,
+        borderColor: "#999",
+        borderRadius: 22,
+        marginBottom: 14,
+        paddingLeft: 10,
+        paddingRight: 15
+    },
 });
 
 export default globalStyle;

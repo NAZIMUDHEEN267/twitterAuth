@@ -9,7 +9,9 @@ This is just like a authentication blueprint of ***twitter***. This project buil
    1. babel-plugin-module-resolver 
    2. react-native-vector-icons
    3. prop-types
+   4. axios
 2. Google fonts
 
 ## helped sources
 - [country code](https://www.naroju.com/create-your-own-phone-number-input-in-react-native/)
+- [axios](https://blog.logrocket.com/using-axios-react-native-manage-api-requests/)

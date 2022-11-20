@@ -47,16 +47,6 @@ export default class FullPhoneNumber extends Component {
 
     closeOverlay = () => this.setState({ isVisible: false });
 
-    selectedCountry(item) {
-        this.setState({
-            isVisible: false,
-            emoji: item.emoji,
-            code: item.phone
-        })
-    }
-
-    keyExtractor = (_, index) => index.toString();
-
     renderItem = ({ item }) => (
         <ListItem
             title={item.name}
