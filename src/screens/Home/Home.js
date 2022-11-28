@@ -11,20 +11,49 @@ import Icon from "react-native-vector-icons/Feather";
 import twitter from "Images/twitter.png";
 import axios from 'axios';
 import { API_ROOT, API_KEY, API_PER_PAGE } from "react-native-dotenv";
+import TextPost from './TextPost';
+import ImgPost from './ImgPost';
 
 class Home extends Component {
 
     state = {
-        data: []
+        data0: [],
+        data1: [],
+        data2: [],
+        news: []
+    };
+
+    postMaker() {
+        this.state.data1.forEach((source) => {
+            let randomNum = Math.round(Math.random() * 100);
+            const textComp = <TextPost source={source} />;
+            const imgComp = <ImgPost />;
+
+            if (randomNum % 2 === 0) {
+                this.setState({ news: [...this.state.news, textComp] });
+            } else {
+                this.setState({ news: [...this.state.news, imgComp] });
+            }
+        })
     }
 
+
     componentDidMount() {
-        axios.get(`${API_ROOT}photos${API_KEY}${API_PER_PAGE}&page=1`)
-        .then(res => {
-            this.setState({data: [...res.data]})
-        }).catch(err => {
+        // fetching data with 3 api calls
+        try {
+          Promise.all([
+                axios.get(`${API_ROOT}photos${API_KEY}${API_PER_PAGE}&page=1`),
+                axios.get(`${API_ROOT}photos${API_KEY}${API_PER_PAGE}&page=2`),
+                axios.get(`${API_ROOT}photos${API_KEY}${API_PER_PAGE}&page=3`)
+            ]).then(data => {
+                data.forEach((source, i) => {
+                    this.setState({ [`data${i}`]: [...source.data]})
+                });
+                this.postMaker();
+            })
+        } catch (err) {
             console.log(err);
-        })
+        }
     }
 
     render() {
@@ -44,8 +73,7 @@ class Home extends Component {
                 <View style={styles.scrollContainer}>
                     <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                         {
-                            this.state.data.map((image, i) => {
-                                console.log(image.user.first_name)
+                            this.state.data0.map((image, i) => {
                                 return (
                                     <View style={styles.scroll_parent} key={i.toString()}>
                                         <TouchableOpacity style={styles.scroll_child} activeOpacity={.6}>
@@ -59,7 +87,9 @@ class Home extends Component {
                     </ScrollView>
                 </View>
                 {/* news */}
-
+                <View style={styles.news}>
+                    {this.state.news}
+                </View>
                 {/* footernav */}
                 <View style={[styles.nav, styles.footer]}>
                     <TouchableOpacity>
