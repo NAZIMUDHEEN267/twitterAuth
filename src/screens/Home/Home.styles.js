@@ -20,20 +20,28 @@ export default StyleSheet.create({
         width: 25
     },
     scrollContainer: {
-        height: 60,
-        backgroundColor: "blue"
+        backgroundColor: "white"
     },
-    scrollItem: {
+    scroll_parent: {
+        margin: 8
+    },
+    scroll_child: {
         borderWidth: 2,
         borderColor: "#0983ed",
         borderRadius: 55,
-        padding: 5,
-        margin: 10
+        width: 60,
+        height: 60,
+        padding: 2,
     },
     scrollItem_img: {
-        width: 40,
-        height: 40,
-        resizeMode: "contain"
+        width: "100%",
+        height: "100%",
+        resizeMode: "cover",
+        borderRadius: 60
+    },
+    scroll_text: {
+        textAlign: "center",
+        marginVertical: 3
     },
     footer: {
         position: "absolute",

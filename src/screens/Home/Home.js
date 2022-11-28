@@ -9,9 +9,23 @@ import React, { Component } from 'react';
 import styles from "./Home.styles";
 import Icon from "react-native-vector-icons/Feather";
 import twitter from "Images/twitter.png";
-import Unsplash from 'unsplash-js';
+import axios from 'axios';
+import { API_ROOT, API_KEY, API_PER_PAGE } from "react-native-dotenv";
 
 class Home extends Component {
+
+    state = {
+        data: []
+    }
+
+    componentDidMount() {
+        axios.get(`${API_ROOT}photos${API_KEY}${API_PER_PAGE}&page=1`)
+        .then(res => {
+            this.setState({data: [...res.data]})
+        }).catch(err => {
+            console.log(err);
+        })
+    }
 
     render() {
         return (
@@ -27,18 +41,25 @@ class Home extends Component {
                     </TouchableOpacity>
                 </View>
                 {/* scrollView */}
-                <ScrollView style={styles.scrollContainer}>
-                    {
-                        Array.from("askdfjlasdkfsdfghsd").map((_, i) => {
-                            return (
-                                <TouchableOpacity style={styles.scrollItem} key={i}>
-                                    <Image source={twitter} style={styles.scrollItem_img} />
-                                </TouchableOpacity>
-                            )
-                        })
-                    }
-                </ScrollView>
+                <View style={styles.scrollContainer}>
+                    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                        {
+                            this.state.data.map((image, i) => {
+                                console.log(image.user.first_name)
+                                return (
+                                    <View style={styles.scroll_parent} key={i.toString()}>
+                                        <TouchableOpacity style={styles.scroll_child} activeOpacity={.6}>
+                                            <Image source={{ uri: image.urls.small }} style={styles.scrollItem_img} />
+                                        </TouchableOpacity>
+                                        <Text style={styles.scroll_text}>{image.user.first_name}</Text>
+                                    </View>
+                                )
+                            })
+                        }
+                    </ScrollView>
+                </View>
                 {/* news */}
+
                 {/* footernav */}
                 <View style={[styles.nav, styles.footer]}>
                     <TouchableOpacity>
