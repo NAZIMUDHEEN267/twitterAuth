@@ -1,6 +1,7 @@
-import { View, Text, Image, StyleSheet } from 'react-native'
+import { View, Text, Image } from 'react-native'
 import React, { Component } from 'react'
 import PostIcons from './PostIcons';
+import globalStyle from '../Global.styles';
 
 export class Post extends Component {
 
@@ -9,6 +10,7 @@ export class Post extends Component {
 
     const { urls, user, alt_description } = this.props.source;
     this.img = urls.small;
+    this.user = user;
     this.name = user.name;
     this.username = user.username;
     this.date = user.updated_at.slice(5, 10).split("-").join("/");
@@ -17,66 +19,28 @@ export class Post extends Component {
 
   render() {
     return (
-      <View style={styles.text_container}>
+      <View style={globalStyle.text_container}>
         {/* profile picture */}
-        <View style={styles.user_profile}>
-          <Image source={{ uri: this.img }} style={styles.user_img} />
+        <View style={globalStyle.user_profile}>
+          <Image source={{ uri: this.img }} style={globalStyle.user_img} />
         </View>
-        <View style={styles.user_content}>
+        <View style={globalStyle.user_content}>
           {/* username */}
-          <View style={styles.user_detail}>
-            <Text style={styles.username}>{this.name}</Text>
+          <View style={globalStyle.user_detail}>
+            <Text style={globalStyle.username}>{this.name}</Text>
             <Text style={{ fontSize: 12 }}>{`@${this.username}`}</Text>
-            <Text style={styles.post_date}>. {this.date}</Text>
+            <Text style={globalStyle.post_date}>. {this.date}</Text>
           </View>
 
           {/* post description */}
-          <Text style={styles.post_description}>{this.description}</Text>
+          <Text style={globalStyle.post_description}>{this.description}</Text>
 
           {/* post component */}
-          <PostIcons />
+          <PostIcons user={this.user}/>
         </View>
       </View>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  text_container: {
-    flexDirection: "row",
-    paddingVertical: 10,
-    paddingHorizontal: 6
-  },
-  user_profile: {
-    flex: .15,
-    marginRight: 10
-  },
-  user_img: {
-    width: 50,
-    height: 50,
-    borderRadius: 50,
-  },
-  user_content: {
-    flex: .83,
-    padding: 2
-  },
-  user_detail: {
-    flexDirection: "row"
-  },
-  username: {
-    fontWeight: "600",
-    marginRight: 5,
-    color: "#333"
-  },
-  post_date: {
-    color: "#888",
-    fontSize: 12,
-    marginLeft: 5
-  },
-  post_description: {
-    lineHeight: 19,
-    color: "#666"
-  }
-});
 
 export default Post;

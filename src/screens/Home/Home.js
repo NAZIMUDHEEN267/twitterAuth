@@ -4,7 +4,8 @@ import {
     Image,
     TouchableOpacity,
     ScrollView,
-    FlatList
+    FlatList,
+    ActivityIndicator
 } from 'react-native';
 import React, { Component } from 'react';
 import styles from "./Home.styles";
@@ -22,11 +23,12 @@ class Home extends Component {
         data1: [],
         data2: [],
         news: [],
-        postIndex: 0
     };
 
+    // get random number
     randomNum = () => Math.round(Math.random() * 30);
 
+    // listing components to news state
     postMaker() {
        this.state.data1.forEach((source, i) => {
         if(this.randomNum() % 2 === 0) {
@@ -40,8 +42,8 @@ class Home extends Component {
     }
 
 
+    // fetching data with 3 api calls
     componentDidMount() {
-        // fetching data with 3 api calls
         try {
             Promise.all([
                 axios.get(`${API_ROOT}photos${API_KEY}${API_PER_PAGE}&page=${this.randomNum()}`),
@@ -110,6 +112,7 @@ class Home extends Component {
                         <Icon name="mail" size={25} />
                     </TouchableOpacity>
                 </View>
+                <ActivityIndicator color={"black"} style={{margin: 8}}/>
             </View>
         )
     }

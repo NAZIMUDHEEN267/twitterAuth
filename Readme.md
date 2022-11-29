@@ -11,6 +11,7 @@ This is just like a authentication blueprint of ***twitter***. This project buil
    3. prop-types
    4. axios
 2. Google fonts
+3. Unsplash api (photo gallery api)
 
 ## helped sources
 - [country code](https://www.naroju.com/create-your-own-phone-number-input-in-react-native/)
