@@ -27,7 +27,7 @@ const globalStyle = StyleSheet.create({
         marginBottom: 14,
         paddingLeft: 10,
         paddingRight: 15
-    },
+    }
 });
 
 export default globalStyle;

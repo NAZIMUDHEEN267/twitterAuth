@@ -3,7 +3,8 @@ import {
     View,
     Image,
     TouchableOpacity,
-    ScrollView
+    ScrollView,
+    FlatList
 } from 'react-native';
 import React, { Component } from 'react';
 import styles from "./Home.styles";
@@ -11,8 +12,8 @@ import Icon from "react-native-vector-icons/Feather";
 import twitter from "Images/twitter.png";
 import axios from 'axios';
 import { API_ROOT, API_KEY, API_PER_PAGE } from "react-native-dotenv";
-import TextPost from './TextPost';
-import ImgPost from './ImgPost';
+import TextPost from './Post';
+import ImagePost from './ImagePost';
 
 class Home extends Component {
 
@@ -20,34 +21,35 @@ class Home extends Component {
         data0: [],
         data1: [],
         data2: [],
-        news: []
+        news: [],
+        postIndex: 0
     };
 
-    postMaker() {
-        this.state.data1.forEach((source) => {
-            let randomNum = Math.round(Math.random() * 100);
-            const textComp = <TextPost source={source} />;
-            const imgComp = <ImgPost />;
+    randomNum = () => Math.round(Math.random() * 30);
 
-            if (randomNum % 2 === 0) {
-                this.setState({ news: [...this.state.news, textComp] });
-            } else {
-                this.setState({ news: [...this.state.news, imgComp] });
-            }
-        })
+    postMaker() {
+       this.state.data1.forEach((source, i) => {
+        if(this.randomNum() % 2 === 0) {
+            const textComp = <TextPost source={source} />
+            this.setState({news: [...this.state.news, textComp]});
+        } else {
+            const imgComp = <ImagePost source={this.state.data2[i]} userImg={source.urls.small} />
+            this.setState({news: [...this.state.news, imgComp]});
+        }
+       })
     }
 
 
     componentDidMount() {
         // fetching data with 3 api calls
         try {
-          Promise.all([
-                axios.get(`${API_ROOT}photos${API_KEY}${API_PER_PAGE}&page=1`),
-                axios.get(`${API_ROOT}photos${API_KEY}${API_PER_PAGE}&page=2`),
-                axios.get(`${API_ROOT}photos${API_KEY}${API_PER_PAGE}&page=3`)
+            Promise.all([
+                axios.get(`${API_ROOT}photos${API_KEY}${API_PER_PAGE}&page=${this.randomNum()}`),
+                axios.get(`${API_ROOT}photos${API_KEY}${API_PER_PAGE}&page=${this.randomNum()}`),
+                axios.get(`${API_ROOT}photos${API_KEY}${API_PER_PAGE}&page=${this.randomNum()}`)
             ]).then(data => {
                 data.forEach((source, i) => {
-                    this.setState({ [`data${i}`]: [...source.data]})
+                    this.setState({ [`data${i}`]: [...source.data] })
                 });
                 this.postMaker();
             })
@@ -88,7 +90,10 @@ class Home extends Component {
                 </View>
                 {/* news */}
                 <View style={styles.news}>
-                    {this.state.news}
+                    <FlatList
+                        data={this.state.news}
+                        renderItem={({ item }) => item}
+                    />
                 </View>
                 {/* footernav */}
                 <View style={[styles.nav, styles.footer]}>

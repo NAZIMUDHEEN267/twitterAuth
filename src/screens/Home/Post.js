@@ -2,7 +2,7 @@ import { View, Text, Image, StyleSheet } from 'react-native'
 import React, { Component } from 'react'
 import PostIcons from './PostIcons';
 
-export class TextPost extends Component {
+export class Post extends Component {
 
   constructor(props) {
     super(props);
@@ -26,7 +26,7 @@ export class TextPost extends Component {
           {/* username */}
           <View style={styles.user_detail}>
             <Text style={styles.username}>{this.name}</Text>
-            <Text style={{fontSize: 12}}>{`@${this.username}`}</Text>
+            <Text style={{ fontSize: 12 }}>{`@${this.username}`}</Text>
             <Text style={styles.post_date}>. {this.date}</Text>
           </View>
 
@@ -77,6 +77,6 @@ const styles = StyleSheet.create({
     lineHeight: 19,
     color: "#666"
   }
-})
+});
 
-export default TextPost;
+export default Post;
