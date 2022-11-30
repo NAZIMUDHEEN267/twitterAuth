@@ -84,7 +84,6 @@ export default class Overlay extends Component {
 const styles = StyleSheet.create({
     container: {
         position: "absolute",
-        elevation: 10,
         height: "100%",
         width: "100%",
         justifyContent: "center",
@@ -93,6 +92,7 @@ const styles = StyleSheet.create({
     },
     overlay: {
         paddingTop: 65,
+        elevation: 100,
         height: "90%",
         width: "85%",
         backgroundColor: "#fff",

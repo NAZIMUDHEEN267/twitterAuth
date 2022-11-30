@@ -9,7 +9,7 @@ const globalStyle = StyleSheet.create({
     },
     parent: {
         width: "80%",
-        alignItems: "center"
+        alignItems: "center",
     },
     inputContainer: {
         width: "100%",
@@ -26,7 +26,8 @@ const globalStyle = StyleSheet.create({
         borderRadius: 22,
         marginBottom: 14,
         paddingLeft: 10,
-        paddingRight: 15
+        paddingRight: 15,
+        backgroundColor: "#fff"
     },
     text_container: {
         flexDirection: "row",

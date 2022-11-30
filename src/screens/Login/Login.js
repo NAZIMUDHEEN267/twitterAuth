@@ -32,7 +32,7 @@ export class Login extends Component {
                     {/* user inputs */}
                     <View style={globalStyle.inputContainer}>
                         <TextInput inputName={"logUsername"} />
-                        <TextInput inputName={"logPassword"} />
+                        <TextInput inputName={"logPassword"} secure={true} />
                     </View>
                     {/* call to action button */}
                     <Button title={"Login"} bg={"#fff"} color={"#0983ed"} switch={this.props.navigation} />
