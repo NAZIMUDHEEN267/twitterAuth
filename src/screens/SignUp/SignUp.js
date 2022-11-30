@@ -50,7 +50,7 @@ export class SignUp extends Component {
 
                 {/* navbar */}
                 <View style={styles.nav}>
-                    <TouchableOpacity style={styles.icon} activeOpacity={.6}>
+                    <TouchableOpacity style={styles.icon} activeOpacity={.6} onPress={() => this.props.navigation.navigate("Login")}>
                         <Icon name="arrow-left" size={30} />
                     </TouchableOpacity>
                     <Image source={Twitter} style={styles.nav_img} />
@@ -79,7 +79,7 @@ export class SignUp extends Component {
                     </View>
 
                     {/* sign up button */}
-                    <Button title={"Sign up"} color={"#fff"} bg={"#0983ed"} />
+                    <Button title={"Sign up"} color={"#fff"} bg={"#0983ed"} switch={this.props.navigation}/>
                 </View>
             </View>
         )

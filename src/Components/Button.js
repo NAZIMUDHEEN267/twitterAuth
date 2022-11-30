@@ -12,7 +12,7 @@ export class Button extends Component {
                 style={[styles.input, styles.btn_cta, {backgroundColor: this.props.bg}]}
                 underlayColor={"#555"}
                 activeOpacity={.8}
-                onPress={() => alert("hello")}
+                onPress={() => this.props.switch.navigate("Home")}
             >
                 <Text style={[styles.btn_text, { color: this.props.color }]}>{this.props.title}</Text>
             </TouchableOpacity>

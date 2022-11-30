@@ -9,6 +9,7 @@ module.exports = {
           "alias": {
             "Images": "./src/assets/Images",
             "Components": "./src/Components",
+            "Screens": "./src/screens"
           }
         }]
     ]
