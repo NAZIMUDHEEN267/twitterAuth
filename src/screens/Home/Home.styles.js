@@ -46,5 +46,9 @@ export default StyleSheet.create({
     footer: {
         position: "absolute",
         bottom: "0%"
+    },
+    loader: {
+        margin: 10,
+        alignItems: "center"
     }
 })

@@ -23,6 +23,7 @@ class Home extends Component {
         data1: [],
         data2: [],
         news: [],
+        loading: false
     };
 
     // get random number
@@ -32,18 +33,20 @@ class Home extends Component {
     postMaker() {
        this.state.data1.forEach((source, i) => {
         if(this.randomNum() % 2 === 0) {
-            const textComp = <TextPost source={source} />
+            const textComp = <TextPost source={source} key={source.id} />
             this.setState({news: [...this.state.news, textComp]});
         } else {
-            const imgComp = <ImagePost source={this.state.data2[i]} userImg={source.urls.small} />
+            const imgComp = <ImagePost source={this.state.data2[i]} userImg={source.urls.small} key={source.id}/>
             this.setState({news: [...this.state.news, imgComp]});
         }
-       })
+       });
+        this.setState({ loading: false });
     }
 
 
     // fetching data with 3 api calls
     componentDidMount() {
+        this.setState({loading: true});
         try {
             Promise.all([
                 axios.get(`${API_ROOT}photos${API_KEY}${API_PER_PAGE}&page=${this.randomNum()}`),
@@ -51,13 +54,28 @@ class Home extends Component {
                 axios.get(`${API_ROOT}photos${API_KEY}${API_PER_PAGE}&page=${this.randomNum()}`)
             ]).then(data => {
                 data.forEach((source, i) => {
-                    this.setState({ [`data${i}`]: [...source.data] })
+                    this.setState({ [`data${i}`]: [...source.data] });
                 });
                 this.postMaker();
             })
         } catch (err) {
             console.log(err);
         }
+    }
+
+    footerIndicator() {
+        return (
+            <View style={styles.loader}>
+               {
+                this.state.loading ? (
+                        <ActivityIndicator
+                            size={"large"}
+                            color={"blue"}
+                        />
+                ) : null
+               }
+            </View>
+        )
     }
 
     render() {
@@ -75,7 +93,7 @@ class Home extends Component {
                 </View>
                 {/* scrollView */}
                 <View style={styles.scrollContainer}>
-                    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                    <ScrollView horizontal showsHorizontalScrollIndicator={false} pagingEnabled>
                         {
                             this.state.data0.map((image, i) => {
                                 return (
@@ -95,6 +113,8 @@ class Home extends Component {
                     <FlatList
                         data={this.state.news}
                         renderItem={({ item }) => item}
+                        keyExtractor={(_, i) => i.toString()}
+                        ListFooterComponent={this.footerIndicator.bind(this)}
                     />
                 </View>
                 {/* footernav */}
@@ -112,7 +132,6 @@ class Home extends Component {
                         <Icon name="mail" size={25} />
                     </TouchableOpacity>
                 </View>
-                <ActivityIndicator color={"black"} style={{margin: 8}}/>
             </View>
         )
     }
