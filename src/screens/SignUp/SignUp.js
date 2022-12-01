@@ -7,6 +7,7 @@ import Icon from "react-native-vector-icons/Feather";
 import styles from "./SignUp.styles";
 import globalStyle from "../Global.styles";
 import Overlay from './Overlay';
+import PropTypes from "prop-types";
 
 export class SignUp extends Component {
 
@@ -39,7 +40,7 @@ export class SignUp extends Component {
 
     // Overlay close/open methods
     openOverlay = () => this.setState({ isVisible: true, evnt: "none" });
-    closeOverlay = () => { this.setState({ isVisible: false, evnt: "auto" }); console.log(this.state); };
+    closeOverlay = () => { this.setState({ isVisible: false, evnt: "auto" }) };
 
     render() {
         return (
@@ -50,10 +51,10 @@ export class SignUp extends Component {
 
                 {/* navbar */}
                 <View style={styles.nav}>
-                    <TouchableOpacity style={styles.icon} activeOpacity={.6} onPress={() => this.props.navigation.navigate("Login")}>
+                    <TouchableOpacity style={[styles.icon, { opacity: this.state.evnt === "auto" ? 1 : 0 }]} activeOpacity={.6} onPress={() => this.props.navigation.navigate("Login")}>
                         <Icon name="arrow-left" size={30} />
                     </TouchableOpacity>
-                    <Image source={Twitter} style={styles.nav_img} />
+                    <Image source={Twitter} style={[styles.nav_img, { opacity: this.state.evnt === "auto" ? 1 : 0 }]} />
                 </View>
                 {/* headline text */}
                 <Text style={[styles.headline, {opacity: this.state.evnt === "auto" ? 1 : 0}]}>Create your account</Text>
@@ -85,5 +86,8 @@ export class SignUp extends Component {
         )
     }
 }
+
+// props type checking
+SignUp.propTypes = { navigation: PropTypes.object };
 
 export default SignUp;

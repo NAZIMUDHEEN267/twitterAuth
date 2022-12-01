@@ -11,6 +11,7 @@ import Button from "Components/Button";
 import TextInput from 'Components/TextInput';
 import styles from "./Login.styles";
 import globalStyle from '../Global.styles';
+import PropTypes from "prop-types";
 
 export class Login extends Component {
 
@@ -46,5 +47,8 @@ export class Login extends Component {
         )
     }
 }
+
+// props type checking
+Login.propTypes = { navigation: PropTypes.object };
 
 export default Login;

@@ -10,7 +10,6 @@ const globalStyle = StyleSheet.create({
     parent: {
         width: "80%",
         alignItems: "center",
-        elevation: 1
     },
     inputContainer: {
         width: "100%",

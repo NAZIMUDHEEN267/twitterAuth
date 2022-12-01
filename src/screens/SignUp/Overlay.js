@@ -9,8 +9,9 @@ import {
 import React, { Component } from 'react';
 import Icon from "react-native-vector-icons/AntDesign";
 import globalStyle from "../Global.styles";
+import PropTypes from "prop-types";
 
-export default class Overlay extends Component {
+class Overlay extends Component {
 
     constructor(props) {
         super(props);
@@ -82,10 +83,16 @@ export default class Overlay extends Component {
     }
 }
 
+// prop type checking
+Overlay.propTypes = {
+    cb: PropTypes.func,
+    close: PropTypes.func,
+    show: PropTypes.bool
+}
+
 const styles = StyleSheet.create({
     container: {
         position: "absolute",
-        elevation: 11,
         height: "100%",
         width: "100%",
         justifyContent: "center",
@@ -94,6 +101,7 @@ const styles = StyleSheet.create({
     },
     overlay: {
         paddingTop: 65,
+        elevation: 100,
         height: "90%",
         width: "85%",
         backgroundColor: "#fff",
@@ -129,3 +137,5 @@ const styles = StyleSheet.create({
         fontWeight: "600"
     }
 });
+
+export default Overlay;

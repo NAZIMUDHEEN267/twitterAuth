@@ -8,13 +8,14 @@ const styles = StyleSheet.create({
     },
     text_lg: {
         fontSize: 23,
-        fontFamily: "MarkoOne-Regular",
+        fontFamily: "NerkoOne-Regular",
         color: "#fff",
         marginTop: 15
     },
     text_sm: {
         marginTop: 15,
-        color: "#544"
+        color: "#544",
+        fontFamily: "Rubik-BoldItalic"
     }
 });
 

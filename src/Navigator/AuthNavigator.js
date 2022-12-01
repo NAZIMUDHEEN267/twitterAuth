@@ -5,6 +5,7 @@ import Home from 'Screens/Home/Home';
 
 const Stack = createStackNavigator();
 
+
 function AuthNavigator() {
   return (
     <Stack.Navigator>

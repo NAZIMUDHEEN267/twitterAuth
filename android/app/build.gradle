@@ -307,7 +307,8 @@ task copyDownloadableDepsToLibs(type: Copy) {
     into 'libs'
 }
 
-apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
+apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); 
+apply NativeModulesAppBuildGradle(project)
 
 // project.ext.vectoricons = [
 //     iconFontNames: [ 'AntDesign.ttf', 'Feather.ttf' ] // Name of the font files you want to copy
