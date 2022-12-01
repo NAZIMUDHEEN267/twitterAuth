@@ -20,7 +20,6 @@ export class Login extends Component {
 
     // rendering method
     render() {
-        console.log(this.props);
         return (
             <ImageBackground style={globalStyle.bg} source={bg} resizeMode="cover">
 

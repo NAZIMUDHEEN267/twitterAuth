@@ -56,9 +56,9 @@ export class SignUp extends Component {
                     <Image source={Twitter} style={styles.nav_img} />
                 </View>
                 {/* headline text */}
-                <Text style={styles.headline}>Create your account</Text>
+                <Text style={[styles.headline, {opacity: this.state.evnt === "auto" ? 1 : 0}]}>Create your account</Text>
                 {/* user inputs */}
-                <View style={globalStyle.parent} pointerEvents={this.state.evnt}>
+                <View style={[globalStyle.parent, { opacity: this.state.evnt === "auto" ? 1 : 0 }]} pointerEvents={this.state.evnt} >
                     <View style={globalStyle.inputContainer}>
                         {/* separate mobile text input for getting country code */}
                         <View style={globalStyle.search}>

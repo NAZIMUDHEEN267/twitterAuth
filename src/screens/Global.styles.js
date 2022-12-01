@@ -5,17 +5,17 @@ const globalStyle = StyleSheet.create({
         height: "100%",
         width: "100%",
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
     },
     parent: {
         width: "80%",
         alignItems: "center",
+        elevation: 1
     },
     inputContainer: {
         width: "100%",
         marginTop: 15,
         marginBottom: 15,
-        // backgroundColor: "yellow"
     },
     search: {
         flexDirection: "row",
