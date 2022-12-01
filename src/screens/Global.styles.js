@@ -61,7 +61,8 @@ const globalStyle = StyleSheet.create({
     },
     post_description: {
         lineHeight: 19,
-        color: "#666"
+        color: "#666",
+        fontFamily: "Poppins-Bold"
     }
 });
 
