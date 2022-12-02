@@ -8,7 +8,6 @@ import styles from "./SignUp.styles";
 import globalStyle from "../Global.styles";
 import Overlay from './Overlay';
 import PropTypes from "prop-types";
-import userContext from 'Context';
 
 export class SignUp extends Component {
 
@@ -21,9 +20,6 @@ export class SignUp extends Component {
             evnt: "auto"
         }
     }
-
-    // context api
-    static contextType = userContext;
 
     // array used for flatlist
     list = [

@@ -23,7 +23,8 @@ class Home extends Component {
         data1: [],
         data2: [],
         news: [],
-        loading: false
+        loading: false,
+        count: 10
     };
 
     // get random number
@@ -43,16 +44,16 @@ class Home extends Component {
         this.setState({ loading: false });
     }
 
-
-    // fetching data with 3 api calls
-    componentDidMount() {
-        this.setState({loading: true});
+    // data fetching through api
+    dataLoad(){
+        this.setState({ loading: true });
         try {
             Promise.all([
-                axios.get(`${API_ROOT}photos${API_KEY}${API_PER_PAGE}&page=${this.randomNum()}`),
-                axios.get(`${API_ROOT}photos${API_KEY}${API_PER_PAGE}&page=${this.randomNum()}`),
-                axios.get(`${API_ROOT}photos${API_KEY}${API_PER_PAGE}&page=${this.randomNum()}`)
+                axios.get(`${API_ROOT}photos${API_KEY}${API_PER_PAGE}&page=${1}`),
+                axios.get(`${API_ROOT}photos${API_KEY}${API_PER_PAGE}&page=${2}`),
+                axios.get(`${API_ROOT}photos${API_KEY}${API_PER_PAGE}&page=${3}`)
             ]).then(data => {
+                data.length = this.state.count
                 data.forEach((source, i) => {
                     this.setState({ [`data${i}`]: [...source.data] });
                 });
@@ -61,6 +62,17 @@ class Home extends Component {
         } catch (err) {
             console.log(err);
         }
+    }
+
+    // data refetching
+    refetch() {
+        this.setState({count: this.state.count + 10})
+        this.dataLoad();
+    }
+
+    // fetching data with 3 api calls
+    componentDidMount() {
+      this.dataLoad();
     }
 
     footerIndicator() {
@@ -115,6 +127,7 @@ class Home extends Component {
                         renderItem={({ item }) => item}
                         pagingEnabled={true}
                         keyExtractor={(_, i) => i.toString()}
+                        onEndReached={this.refetch.bind(this)}
                         ListFooterComponent={this.footerIndicator.bind(this)}
                     />
                 </View>

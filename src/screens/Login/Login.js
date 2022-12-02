@@ -12,15 +12,12 @@ import TextInput from 'Components/TextInput';
 import styles from "./Login.styles";
 import globalStyle from '../Global.styles';
 import PropTypes from "prop-types";
-import userContext from 'Context'; // path ./src/Auth/Context.js
 
 export class Login extends Component {
 
     constructor(props) {
         super(props);
     }
-
-    static contextType = userContext;
 
     // rendering method
     render() {

@@ -1,5 +1,6 @@
 import { StyleSheet, TextInput } from 'react-native';
 import React, { Component } from 'react';
+import userContext from 'Context';
 
 export class Input extends Component {
   constructor(props) {
@@ -18,22 +19,47 @@ export class Input extends Component {
       sigMobileBorderClr: "#999",
       sigEmailBorderClr: "#999",
     }
+
+    this.handleTextEvent = this.handleTextEvent.bind(this);
   }
 
+  // border color variable
   borderClr = `${this.props.inputName}BorderClr`;
 
-  componentDidUpdate() {
-    if(/\s/g.test(this.state.logUsername || this.state.sigUsername)) {
-      alert("Spaces are not allowed in Username")
-    }
+  // context api
+  static contextType = userContext;
+
+  handleTextEvent (text) {
+    this.setState({[this.props.inputName]: text});
+
+    const { 
+      logUsername, 
+      logPassword, 
+      sigEmail, 
+      sigEmailBorderClr, 
+      sigMobile,
+      sigMobileBorderClr,
+      sigPassword,
+      sigPasswordBorderClr,
+      sigUsername,
+      sigUsernameBorderClr,
+      logPasswordBorderClr,
+      logUserBorderClr
+     } = this.state;
+
+    //  checking string pattern of user inputs
+    this.context.logUser(logUsername);
+    if(/\s/g.test(logUsername || sigUsername)) {
+    } 
   }
 
   render() {
-
+    console.log(this.state.logUserBorderClr);
       return (
         <TextInput
-          onFocus={() => this.setState({ [this.borderClr]: "#276ec4" })}
+          onFocus={() => this.setState({ [this.borderClr]: "#276ec4"})}
           onBlur={() => this.setState({ [this.borderClr]: "#999" })}
+          maxLength={25}
           style={(!this.props.borderBtm) ? 
             [styles.input, styles.mb, { borderColor: this.state[this.borderClr] }] :
             {...styles.input, ...styles.borderBottom}
@@ -41,7 +67,7 @@ export class Input extends Component {
           autoFocus={this.props.inputName === "logUsername" ? true : false}
           placeholder={this.props.inputName.slice(3)}
           value={this.state[this.props.inputName]}
-          onChangeText={(text) => this.setState({ [this.props.inputName]: text })}
+          onChangeText={this.handleTextEvent}
           keyboardType={this.props.type}
           secureTextEntry={this.props.secure ? true : false}
         />
@@ -57,7 +83,7 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: "#fff",
     borderRadius: 22,
-    borderWidth: 2,
+    borderWidth: 3,
     borderColor: "#999"
   },
   mb: {

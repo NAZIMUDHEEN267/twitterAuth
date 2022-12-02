@@ -1,5 +1,5 @@
 # TwitterAuth 
-This is just like a authentication blueprint of ***twitter***. This project builded for my learning journey, and i just want to know how react-native navigation, async storage works. Total 3 pages are created on this project ***Home***, ***Login***, ***SignUp***. Image and text data used in unsplash api and regex used for user input checking
+This is just like a authentication blueprint of ***twitter***. This project builded for my learning journey, and i just want to know how react-native navigation, async storage works. Total 3 pages are created on this project ***Home***, ***Login***, ***SignUp***. Image and text data used in unsplash api and regex used for user input checking. Database as used "async-storage"
 
 ## Preview
 
@@ -11,6 +11,7 @@ This is just like a authentication blueprint of ***twitter***. This project buil
    3. prop-types
    4. axios
    5. react-navigation/stack
+   6. @react-native-async-storage/async-storage
 2. Google fonts
 3. Unsplash api (photo gallery api)
 
