@@ -12,6 +12,7 @@ import TextInput from 'Components/TextInput';
 import styles from "./Login.styles";
 import globalStyle from '../Global.styles';
 import PropTypes from "prop-types";
+import userContext from 'Context'; // path ./src/Auth/Context.js
 
 export class Login extends Component {
 
@@ -19,8 +20,12 @@ export class Login extends Component {
         super(props);
     }
 
+    static contextType = userContext;
+
     // rendering method
     render() {
+        console.log(this.context);
+
         return (
             <ImageBackground style={globalStyle.bg} source={bg} resizeMode="cover">
 

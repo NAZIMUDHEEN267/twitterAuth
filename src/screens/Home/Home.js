@@ -113,6 +113,7 @@ class Home extends Component {
                     <FlatList
                         data={this.state.news}
                         renderItem={({ item }) => item}
+                        pagingEnabled={true}
                         keyExtractor={(_, i) => i.toString()}
                         ListFooterComponent={this.footerIndicator.bind(this)}
                     />

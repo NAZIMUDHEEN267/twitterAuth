@@ -8,6 +8,7 @@ import styles from "./SignUp.styles";
 import globalStyle from "../Global.styles";
 import Overlay from './Overlay';
 import PropTypes from "prop-types";
+import userContext from 'Context';
 
 export class SignUp extends Component {
 
@@ -20,6 +21,9 @@ export class SignUp extends Component {
             evnt: "auto"
         }
     }
+
+    // context api
+    static contextType = userContext;
 
     // array used for flatlist
     list = [
@@ -57,7 +61,7 @@ export class SignUp extends Component {
                     <Image source={Twitter} style={[styles.nav_img, { opacity: this.state.evnt === "auto" ? 1 : 0 }]} />
                 </View>
                 {/* headline text */}
-                <Text style={[styles.headline, {opacity: this.state.evnt === "auto" ? 1 : 0}]}>Create your account</Text>
+                <Text style={[styles.headline, { opacity: this.state.evnt === "auto" ? 1 : 0 }]}>Create your account</Text>
                 {/* user inputs */}
                 <View style={[globalStyle.parent, { opacity: this.state.evnt === "auto" ? 1 : 0 }]} pointerEvents={this.state.evnt} >
                     <View style={globalStyle.inputContainer}>
@@ -80,7 +84,7 @@ export class SignUp extends Component {
                     </View>
 
                     {/* sign up button */}
-                    <Button title={"Sign up"} color={"#fff"} bg={"#0983ed"} switch={this.props.navigation}/>
+                    <Button title={"Sign up"} color={"#fff"} bg={"#0983ed"} switch={this.props.navigation} />
                 </View>
             </View>
         )

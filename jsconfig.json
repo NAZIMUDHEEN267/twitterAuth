@@ -2,9 +2,10 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
-            "Images/*": ["./src/assets/Images/*"],
-            "Components/*": ["./src/Components/*"],
-            "Screens": ["./src/screens"]
+          "Images/*": ["./src/assets/Images/*"],
+          "Components/*": ["./src/Components/*"],
+          "Screens": ["./src/screens"],
+          "Context": ["./src/Auth/Context.js"]
         }
     }
 }
