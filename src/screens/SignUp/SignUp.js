@@ -66,7 +66,7 @@ export class SignUp extends Component {
                             <TouchableOpacity style={styles.code} onPress={this.openOverlay.bind(this)}>
                                 <Text>{`${this.state.emoji} ${this.state.code}`}</Text>
                             </TouchableOpacity>
-                            <TextInput inputName={"sigMobile"} type={"number-pad"} borderBtm={true} />
+                            <TextInput inputName={"sigMobile"} type="number-pad" borderBtm={true} />
                         </View>
                         <FlatList
                             data={this.list}

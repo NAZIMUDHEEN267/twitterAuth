@@ -1,18 +1,33 @@
 import React, { Component } from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
+import userContext from 'Context';
 
 export class Button extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            color: "#c4c7cc"
+        }
+    }
+
+    // context api
+    static contextType = userContext;
+
+    // event handling
+    handleEvent = (e) => {
+        this.setState({ color: this.props.bg });
+        e.preventDefault();
     }
 
     render() {
         return (
             <TouchableOpacity
-                style={[styles.input, styles.btn_cta, {backgroundColor: this.props.bg}]}
+                ref={this.inputRef}
+                style={[styles.input, styles.btn_cta, { backgroundColor: this.state.color }]}
                 underlayColor={"#555"}
                 activeOpacity={.8}
-                onPress={() => this.props.switch.navigate("Home")}
+                onPress={this.handleEvent}
             >
                 <Text style={[styles.btn_text, { color: this.props.color }]}>{this.props.title}</Text>
             </TouchableOpacity>

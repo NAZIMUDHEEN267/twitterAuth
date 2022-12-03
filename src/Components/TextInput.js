@@ -29,28 +29,32 @@ export class Input extends Component {
   // context api
   static contextType = userContext;
 
+  // 
   handleTextEvent (text) {
     this.setState({[this.props.inputName]: text});
+  }
 
-    const { 
-      logUsername, 
-      logPassword, 
-      sigEmail, 
-      sigEmailBorderClr, 
-      sigMobile,
-      sigMobileBorderClr,
-      sigPassword,
-      sigPasswordBorderClr,
-      sigUsername,
-      sigUsernameBorderClr,
-      logPasswordBorderClr,
-      logUserBorderClr
-     } = this.state;
+  // key press event
+  keyEvent () {
+    const input = this.props.inputName.split(/(?=[A-Z])/);
 
-    //  checking string pattern of user inputs
-    this.context.logUser(logUsername);
-    if(/\s/g.test(logUsername || sigUsername)) {
-    } 
+    if (input[0] === "log") {
+      const { logUsername, logPassword } = this.state;
+      this.context.logObj.username = logUsername;
+      this.context.logObj.password = logPassword;
+
+      console.log(this.context.logObj);
+
+    } else {
+      const { sigUsername, sigMobile, sigEmail, sigPassword } = this.state;
+      this.context.sigObj.mobile = sigMobile;
+      this.context.sigObj.username = sigUsername;
+      this.context.sigObj.mail = sigEmail;
+      this.context.sigObj.password = sigPassword;
+
+      console.log(this.context.sigObj);
+    }
+
   }
 
   render() {
@@ -58,7 +62,7 @@ export class Input extends Component {
         <TextInput
           onFocus={() => this.setState({ [this.borderClr]: "#276ec4"})}
           onBlur={() => this.setState({ [this.borderClr]: "#999" })}
-          maxLength={25}
+          maxLength={30}
           style={(!this.props.borderBtm) ? 
             [styles.input, styles.mb, { borderColor: this.state[this.borderClr] }] :
             {...styles.input, ...styles.borderBottom}
@@ -67,6 +71,7 @@ export class Input extends Component {
           placeholder={this.props.inputName.slice(3)}
           value={this.state[this.props.inputName]}
           onChangeText={this.handleTextEvent}
+          onKeyPress={this.keyEvent.bind(this)}
           keyboardType={this.props.type}
           secureTextEntry={this.props.secure ? true : false}
         />
