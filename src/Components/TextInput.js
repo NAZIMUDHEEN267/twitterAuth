@@ -39,21 +39,14 @@ export class Input extends Component {
     const input = this.props.inputName.split(/(?=[A-Z])/);
 
     if (input[0] === "log") {
-
       this.context.logCb(true);
+      this.context.logObjCb(this.state.logUsername, this.state.logPassword);
+      console.log(this.context.logObj);
 
       const { logUsername, logPassword } = this.state;
-      this.context.logObj.username = logUsername;
-      this.context.logObj.password = logPassword;
-
-
     } else {
-      const { sigUsername, sigMobile, sigEmail, sigPassword } = this.state;
-      this.context.sigObj.mobile = sigMobile;
-      this.context.sigObj.username = sigUsername;
-      this.context.sigObj.mail = sigEmail;
-      this.context.sigObj.password = sigPassword;
-
+      this.context.sigCb(true);
+      const { sigUsername, sigEmail, sigMobile, sigPassword } = this.state;
     }
 
   }

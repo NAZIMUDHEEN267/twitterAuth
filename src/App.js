@@ -4,27 +4,30 @@ import userContext from "Context"; // path ./src/Auth
 import { useState } from "react";
 import RNBootSplash from "react-native-bootsplash";
 // for authentication check
-import loginCheck from "./Auth/loginCheck";
-import signCheck from "./Auth/signCheck";
+
 
 const App = function () {
 
     const [access, setAccess] = useState(false);
     const [logBtn, setLogBtn] = useState(false);
     const [sigBtn, setSigBtn] = useState(false);
+    const [logObj, setLogObj] = useState({});
+    const [sigObj, setSigObj] = useState({username: "", password: ""});
+
+    function logObjCb (uname, passwd) {
+        setLogObj({ username: uname, password: passwd })
+    }
 
     return (
         <userContext.Provider value={{
-            access,
             logBtn,
             sigBtn,
-            accessCb: function (value) { setAccess(value) },
             logCb: function (value) { setLogBtn(value) },
             sigCb: function (value) { setSigBtn(value) },
-            loginCheck,
-            signCheck,
-            logObj: {},
-            sigObj: {}
+            logObjCb ,
+            sigObjCb: function (value) { setSigObj({...value}) },
+            sigObj,
+            logObj
         }}>
             <NavigationContainer onReady={() => RNBootSplash.hide({ fade: true })}>
                 <AuthNavigator route={access ? "Home" : "Login"} />

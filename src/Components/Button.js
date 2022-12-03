@@ -16,19 +16,14 @@ export class Button extends Component {
 
     // event handling
     handleEvent = (e) => {
-        console.log(this.context.logObj, this.context.logBtn);
-        if(this.context.logBtn) {
-            console.log(this.context.loginCheck(this.context.logObj));
-        } else if(this.context.sigBtn) {
-            this.context.sigCheck(this.context.sigObj);
-        }
-        e.preventDefault();
+        const data = this.props.data;
+        console.log(data);
+       this.props.switch("LoginCheck", data);
     }
 
     render() {
         return (
             <TouchableOpacity
-                ref={this.inputRef}
                 style={[styles.input, styles.btn_cta, { backgroundColor: this.state.color }]}
                 underlayColor={"#555"}
                 activeOpacity={.8}

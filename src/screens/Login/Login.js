@@ -13,12 +13,19 @@ import TextInput from 'Components/TextInput';
 import styles from "./Login.styles";
 import globalStyle from '../Global.styles';
 import PropTypes from "prop-types";
-import { TouchableHighlight } from 'react-native-gesture-handler';
+import userContext from 'Context';
 
 export class Login extends Component {
 
     constructor(props) {
         super(props);
+    }
+
+    // context api
+    static contextType = userContext;
+
+    componentDidMount() {
+        this.context.sigCb(false);
     }
 
     // rendering method
