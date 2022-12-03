@@ -1,7 +1,6 @@
 
 import userContext from "Context";
 
-
 const loginUser = async function (data) {
     const { Username, Password } = data;
     const verifyData = JSON.parse(await AsyncStorage.getItem(Username));

@@ -20,3 +20,4 @@ This is just like a authentication blueprint of ***twitter***. This project buil
 - [axios](https://blog.logrocket.com/using-axios-react-native-manage-api-requests/)
 - [pointerEvent](https://blog.logrocket.com/using-pointerevents-react-native/)
 - [react-navigation](https://reactnavigation.org/docs/stack-navigator/)
+- [boot-splash](https://github.com/zoontek/react-native-bootsplash)

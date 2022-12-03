@@ -7,7 +7,8 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "boot-splash": "npx react-native generate-bootsplash ./src/assets/Images/twitter-logo.png --background-color=0cabc7 --logo-width=100 --assets-path=assets --flavor=main"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.1",
@@ -17,6 +18,7 @@
     "prop-types": "^15.8.1",
     "react": "18.1.0",
     "react-native": "0.70.6",
+    "react-native-bootsplash": "^4.3.3",
     "react-native-elements": "^3.4.2",
     "react-native-gesture-handler": "^2.8.0",
     "react-native-safe-area-context": "^4.4.1",

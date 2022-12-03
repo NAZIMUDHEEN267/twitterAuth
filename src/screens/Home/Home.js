@@ -49,9 +49,9 @@ class Home extends Component {
         this.setState({ loading: true });
         try {
             Promise.all([
-                axios.get(`${API_ROOT}photos${API_KEY}${API_PER_PAGE}&page=${1}`),
-                axios.get(`${API_ROOT}photos${API_KEY}${API_PER_PAGE}&page=${2}`),
-                axios.get(`${API_ROOT}photos${API_KEY}${API_PER_PAGE}&page=${3}`)
+                axios.get(`${API_ROOT}photos${API_KEY}${API_PER_PAGE}&page=${this.randomNum()}`),
+                axios.get(`${API_ROOT}photos${API_KEY}${API_PER_PAGE}&page=${this.randomNum()}`),
+                axios.get(`${API_ROOT}photos${API_KEY}${API_PER_PAGE}&page=${this.randomNum()}`)
             ]).then(data => {
                 data.length = this.state.count
                 data.forEach((source, i) => {
@@ -108,12 +108,14 @@ class Home extends Component {
                     <ScrollView horizontal showsHorizontalScrollIndicator={false} pagingEnabled>
                         {
                             this.state.data0.map((image, i) => {
+                                {/* user name */}
+                                const name = image.user.first_name;
                                 return (
                                     <View style={styles.scroll_parent} key={i.toString()}>
                                         <TouchableOpacity style={styles.scroll_child} activeOpacity={.6}>
                                             <Image source={{ uri: image.urls.small }} style={styles.scrollItem_img} />
                                         </TouchableOpacity>
-                                        <Text style={styles.scroll_text}>{image.user.first_name}</Text>
+                                        <Text style={styles.scroll_text}>{name.length > 7 ? name.slice(7) : name}</Text>
                                     </View>
                                 )
                             })
@@ -125,7 +127,6 @@ class Home extends Component {
                     <FlatList
                         data={this.state.news}
                         renderItem={({ item }) => item}
-                        pagingEnabled={true}
                         keyExtractor={(_, i) => i.toString()}
                         onEndReached={this.refetch.bind(this)}
                         ListFooterComponent={this.footerIndicator.bind(this)}

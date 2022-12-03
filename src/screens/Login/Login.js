@@ -12,6 +12,7 @@ import TextInput from 'Components/TextInput';
 import styles from "./Login.styles";
 import globalStyle from '../Global.styles';
 import PropTypes from "prop-types";
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export class Login extends Component {
 
@@ -21,7 +22,6 @@ export class Login extends Component {
 
     // rendering method
     render() {
-        console.log(this.context);
 
         return (
             <ImageBackground style={globalStyle.bg} source={bg} resizeMode="cover">
@@ -41,7 +41,9 @@ export class Login extends Component {
                     {/* links forgot and new register */}
                     <View style={{flexDirection: "row", justifyContent: "center"}}>
                         <Text style={styles.text_sm}>Forgot password?. </Text>
-                        <Text style={styles.text_sm} onPress={() => this.props.navigation.navigate("SignUp")}>Sign up for Twitter</Text>
+                        <TouchableOpacity>
+                            <Text style={styles.text_sm} onPress={() => this.props.navigation.navigate("SignUp")}>Sign up for Twitter</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
 

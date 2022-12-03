@@ -54,7 +54,6 @@ export class Input extends Component {
   }
 
   render() {
-    console.log(this.state.logUserBorderClr);
       return (
         <TextInput
           onFocus={() => this.setState({ [this.borderClr]: "#276ec4"})}
@@ -83,7 +82,7 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: "#fff",
     borderRadius: 22,
-    borderWidth: 3,
+    borderWidth: 2,
     borderColor: "#999"
   },
   mb: {
