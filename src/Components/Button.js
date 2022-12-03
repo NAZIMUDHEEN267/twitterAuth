@@ -16,7 +16,12 @@ export class Button extends Component {
 
     // event handling
     handleEvent = (e) => {
-        this.setState({ color: this.props.bg });
+        console.log(this.context.logObj, this.context.logBtn);
+        if(this.context.logBtn) {
+            console.log(this.context.loginCheck(this.context.logObj));
+        } else if(this.context.sigBtn) {
+            this.context.sigCheck(this.context.sigObj);
+        }
         e.preventDefault();
     }
 

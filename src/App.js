@@ -10,20 +10,26 @@ import signCheck from "./Auth/signCheck";
 const App = function () {
 
     const [access, setAccess] = useState(false);
+    const [logBtn, setLogBtn] = useState(false);
+    const [sigBtn, setSigBtn] = useState(false);
 
     return (
-       <userContext.Provider value={{
-        access, 
-        cb: function() { setAccess(true) },
-        loginCheck,
-        signCheck,
-        logObj: {},
-        sigObj: {}
+        <userContext.Provider value={{
+            access,
+            logBtn,
+            sigBtn,
+            accessCb: function (value) { setAccess(value) },
+            logCb: function (value) { setLogBtn(value) },
+            sigCb: function (value) { setSigBtn(value) },
+            loginCheck,
+            signCheck,
+            logObj: {},
+            sigObj: {}
         }}>
-            <NavigationContainer onReady={() => RNBootSplash.hide({fade: true})}>
-                <AuthNavigator route={access ? "Home" : "Login"}/>
+            <NavigationContainer onReady={() => RNBootSplash.hide({ fade: true })}>
+                <AuthNavigator route={access ? "Home" : "Login"} />
             </NavigationContainer>
-       </userContext.Provider>
+        </userContext.Provider>
     )
 }
 
