@@ -1,4 +1,12 @@
-import { View, Text, StyleSheet, Image } from 'react-native'
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Animated
+} from 'react-native';
+import { useRef } from 'react';
 import User from "Images/user.png";
 import Entypo from "react-native-vector-icons/Entypo";
 import Feather from "react-native-vector-icons/Feather";
@@ -6,7 +14,16 @@ import AntiDesign from "react-native-vector-icons/AntDesign";
 import MaterialCm from "react-native-vector-icons/MaterialCommunityIcons";
 import { TouchableHighlight } from 'react-native-gesture-handler';
 
-const SideBar = () => {
+const SideBar = ({ navigation }) => {
+  const linkOne = useRef(new Animated.Value(-70)).current;
+  function linkOneAnim() {
+    Animated.timing(linkOne, {
+      toValue: 0,
+      duration: 1000,
+      useNativeDriver: true
+    }).start();
+  }
+
   return (
     <View style={styles.sideBar_container}>
       {/* top view */}
@@ -30,30 +47,49 @@ const SideBar = () => {
       </View>
       {/* center view */}
       <View style={[styles.links, styles.border_bottom]}>
-        <View style={styles.link_container}>
+        <TouchableOpacity style={styles.link_container} onPress={() => navigation.navigate("Profile")}>
           <Feather name="user" size={22} style={styles.link_icon} />
           <Text style={styles.link_text}>Profile</Text>
-        </View>
-        <View style={styles.link_container}>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.link_container} onPress={() => navigation.navigate("Topics")}>
           <MaterialCm name="message-processing-outline" size={22} style={styles.link_icon} />
           <Text style={styles.link_text}>Topics</Text>
-        </View>
-        <View style={styles.link_container}>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.link_container} onPress={() => navigation.navigate("Bookmarks")}>
           <Feather name="bookmark" size={22} style={styles.link_icon} />
           <Text style={styles.link_text}>Bookmarks</Text>
-        </View>
-        <View style={styles.link_container}>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.link_container} onPress={() => navigation.navigate("Lists")}>
           <MaterialCm name="newspaper-variant-outline" size={22} style={styles.link_icon} />
           <Text style={styles.link_text}>Lists</Text>
-        </View>
-        <View style={styles.link_container}>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.link_container} onPress={() => navigation.navigate("TwitterCircle")}>
           <MaterialCm name="account-heart-outline" size={22} style={styles.link_icon} />
           <Text style={styles.link_text}>Twitter Circle</Text>
-        </View>
+        </TouchableOpacity>
       </View>
       {/* footer view */}
-      <View style={ styles.app_utils }>
+      <View style={styles.app_utils}>
+        <View style={styles.dropdowns}>
+          <TouchableOpacity style={[styles.link_container, styles.util_btn]} onPress={linkOneAnim}>
+            <Text style={styles.util_text}>Creator Studio</Text>
+            <AntiDesign name="down" style={styles.util_icon} size={13} />
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.link_container, styles.util_btn]}>
+            <Text style={styles.util_text}>Professional Tools</Text>
+            <AntiDesign name="down" style={styles.util_icon} size={13} />
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.link_container, styles.util_btn]} onPress={linkOneAnim}>
+            <Text style={styles.util_text}>Settings & Support</Text>
+            <AntiDesign name="down" style={styles.util_icon} size={13} />
+          </TouchableOpacity>
+        </View>
+      </View>
 
+      {/* footer sidebar */}
+      <View style={styles.footer_sidebar}>
+        <MaterialCm name="lightbulb-on" size={30} />
+        <MaterialCm name="logout" size={28} />
       </View>
     </View>
   )
@@ -122,6 +158,7 @@ const styles = StyleSheet.create({
   link_container: {
     flexDirection: "row",
     padding: 10,
+    alignItems: "center"
   },
   link_icon: {
     color: "#333",
@@ -135,5 +172,27 @@ const styles = StyleSheet.create({
   },
   app_utils: {
     flex: 2
+  },
+  dropdowns: {
+    marginVertical: 10
+  },
+  util_btn: {
+    justifyContent: "space-between"
+  },
+  util_icon: {
+    color: "#333"
+  },
+  util_text: {
+    fontWeight: "600",
+    fontSize: 15,
+    color: "#333"
+  },
+  footer_sidebar: {
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
+    padding: 15,
+    flexDirection: "row",
+    justifyContent: "space-between",
   }
 })

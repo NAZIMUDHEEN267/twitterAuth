@@ -1,5 +1,4 @@
 import { NavigationContainer } from "@react-navigation/native";
-import AsyncStorage from "@react-native-community/async-storage";
 import userContext from "Context"; // path ./src/Auth
 import { useState } from "react";
 import RNBootSplash from "react-native-bootsplash";
