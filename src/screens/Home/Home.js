@@ -3,7 +3,6 @@ import {
     View,
     Image,
     TouchableOpacity,
-    ScrollView,
     FlatList,
     ActivityIndicator
 } from 'react-native';
@@ -12,9 +11,9 @@ import styles from "./Home.styles";
 import Icon from "react-native-vector-icons/Feather";
 import twitter from "Images/twitter.png";
 import axios from 'axios';
-import { API_ROOT, API_KEY, API_PER_PAGE } from "react-native-dotenv";
 import TextPost from './Post';
 import ImagePost from './ImagePost';
+import { API_ROOT, API_KEY, API_PER_PAGE } from "react-native-dotenv";
 
 class Home extends Component {
 
@@ -53,7 +52,9 @@ class Home extends Component {
                 axios.get(`${API_ROOT}photos${API_KEY}${API_PER_PAGE}&page=${this.randomNum()}`),
                 axios.get(`${API_ROOT}photos${API_KEY}${API_PER_PAGE}&page=${this.randomNum()}`)
             ]).then(data => {
-                data.length = this.state.count
+                // assigning length of count to data
+                data.length = this.state.count;
+
                 data.forEach((source, i) => {
                     this.setState({ [`data${i}`]: [...source.data] });
                 });
@@ -75,6 +76,7 @@ class Home extends Component {
       this.dataLoad();
     }
 
+    // indicator 
     footerIndicator() {
         return (
             <View style={styles.loader}>
@@ -95,7 +97,7 @@ class Home extends Component {
             <View style={styles.parent}>
                 {/* nav */}
                 <View style={styles.nav}>
-                    <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
+                    <TouchableOpacity onPress={this.props.navigation.openDrawer}>
                         <Icon name="user" size={25} />
                     </TouchableOpacity>
                     <Image source={twitter} style={styles.navIconSize} />
@@ -103,24 +105,31 @@ class Home extends Component {
                         <Icon name="star" size={25} />
                     </TouchableOpacity>
                 </View>
-                {/* scrollView */}
+
+                {/* navbar scroll*/}
                 <View style={styles.scrollContainer}>
-                    <ScrollView horizontal showsHorizontalScrollIndicator={false} pagingEnabled>
-                        {
-                            this.state.data0.map((image, i) => {
+                    <FlatList 
+                            horizontal
+                            pagingEnabled
+                            showsHorizontalScrollIndicator={false}
+                            data={this.state.data0}
+                            renderItem={({item, i}) => {
                                 {/* user name */}
-                                const name = image.user.first_name;
+                                const { user : { first_name } } = item; 
+                                const username = first_name.length > 7 ? first_name.slice(7) : first_name ;
+                                
                                 return (
-                                    <View style={styles.scroll_parent} key={i.toString()}>
+                                    <View style={styles.scroll_parent} key={i}>
                                         <TouchableOpacity style={styles.scroll_child} activeOpacity={.6}>
-                                            <Image source={{ uri: image.urls.small }} style={styles.scrollItem_img} />
+                                            <Image source={{ uri: item.urls.small }} style={styles.scrollItem_img} />
                                         </TouchableOpacity>
-                                        <Text style={styles.scroll_text}>{name.length > 7 ? name.slice(7) : name}</Text>
+                                        <Text style={styles.scroll_text}>{username}</Text>
                                     </View>
                                 )
-                            })
-                        }
-                    </ScrollView>
+                            }}
+                            onEndReached={this.refetch.bind(this)}
+                        
+                    />
                 </View>
                 {/* news */}
                 <View style={styles.news}>
