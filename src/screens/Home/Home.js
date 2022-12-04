@@ -95,7 +95,7 @@ class Home extends Component {
             <View style={styles.parent}>
                 {/* nav */}
                 <View style={styles.nav}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
                         <Icon name="user" size={25} />
                     </TouchableOpacity>
                     <Image source={twitter} style={styles.navIconSize} />

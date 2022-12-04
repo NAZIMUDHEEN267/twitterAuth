@@ -12,6 +12,7 @@ module.exports = {
             "Screens": "./src/screens",
             "Context": "./src/Auth/Context.js"
           }
-        }]
+        }],
+      'react-native-reanimated/plugin',
     ]
   };
