@@ -5,20 +5,6 @@ export default StyleSheet.create({
         height: "100%",
         width: "100%"
     },
-    nav: {
-        width: "100%",
-        height: 60,
-        flexDirection: "row",
-        backgroundColor: "#fff",
-        alignItems: "center",
-        justifyContent: "space-between",
-        paddingHorizontal: 10,
-        elevation: 10
-    },
-    navIconSize: {
-        height: 25,
-        width: 25
-    },
     scrollContainer: {
         backgroundColor: "white"
     },

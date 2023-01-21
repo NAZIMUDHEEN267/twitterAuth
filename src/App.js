@@ -4,17 +4,18 @@ import { useState } from "react";
 import RNBootSplash from "react-native-bootsplash";
 import StackNavigator from "./Navigator/StackNavigator"
 
-const App = function () {
+const App = function (props) {
 
     const [access, setAccess] = useState(false);
 
     return (
-       <userContext.Provider value={"kas"}>
-            <NavigationContainer onReady={() => RNBootSplash.hide({fade: true})}>
+        <userContext.Provider value={"kas"}>
+            <NavigationContainer onReady={() => RNBootSplash.hide({ fade: true })}>
                 <StackNavigator />
             </NavigationContainer>
-       </userContext.Provider>
+        </userContext.Provider>
     )
 }
 
 export default App;
+

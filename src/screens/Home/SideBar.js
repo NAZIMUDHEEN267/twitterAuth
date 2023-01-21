@@ -14,7 +14,7 @@ import AntiDesign from "react-native-vector-icons/AntDesign";
 import MaterialCm from "react-native-vector-icons/MaterialCommunityIcons";
 import { TouchableHighlight } from 'react-native-gesture-handler';
 
-const SideBar = ({ navigation }) => {
+const SideBar = () => {
   const linkOne = useRef(new Animated.Value(-70)).current;
   function linkOneAnim() {
     Animated.timing(linkOne, {

@@ -54,7 +54,6 @@ class Home extends Component {
             ]).then(data => {
                 // assigning length of count to data
                 data.length = this.state.count;
-
                 data.forEach((source, i) => {
                     this.setState({ [`data${i}`]: [...source.data] });
                 });
@@ -107,7 +106,7 @@ class Home extends Component {
                 </View>
 
                 {/* navbar scroll*/}
-                {/* <View style={styles.scrollContainer}>
+                <View style={styles.scrollContainer}>
                     <FlatList 
                             horizontal
                             pagingEnabled
@@ -115,7 +114,7 @@ class Home extends Component {
                             data={this.state.data0}
                             renderItem={({item, i}) => {
                                 {/* user name */}
-                                {/* const { user : { first_name } } = item; 
+                                const { user : { first_name } } = item; 
                                 const username = first_name.length > 7 ? first_name.slice(7) : first_name ;
                                 
                                 return (
@@ -125,37 +124,36 @@ class Home extends Component {
                                         </TouchableOpacity>
                                         <Text style={styles.scroll_text}>{username}</Text>
                                     </View>
-                                ) */}
-                            {/* }} */}
-                            {/* onEndReached={this.refetch.bind(this)}
-                        
-                    /> */}
-                {/* </View>  */} 
+                                )
+                            }}
+                            onEndReached={this.refetch.bind(this)}
+                    />
+                </View>  
                 {/* news */}
-                {/* // <View style={styles.news}> */}
-                {/* //     <FlatList */}
-                {/* //         data={this.state.news}
-                //         renderItem={({ item }) => item}
-                //         keyExtractor={(_, i) => i.toString()}
-                //         onEndReached={this.refetch.bind(this)}
-                //         ListFooterComponent={this.footerIndicator.bind(this)}
-                //     />
-                // </View> */}
-                {/* footernav */}
-                {/* // <View style={[styles.nav, styles.footer]}>
-                //     <TouchableOpacity>
-                //         <Icon name="home" size={25} />
-                //     </TouchableOpacity>
-                //     <TouchableOpacity>
-                //         <Icon name="hash" size={25} />
-                //     </TouchableOpacity>
-                //     <TouchableOpacity>
-                //         <Icon name="search" size={25} />
-                //     </TouchableOpacity>
-                //     <TouchableOpacity>
-                //         <Icon name="mail" size={25} />
-                //     </TouchableOpacity>
-                // </View> */}
+                 <View style={styles.news}>
+                     <FlatList
+                         data={this.state.news}
+                         renderItem={({ item }) => item}
+                         keyExtractor={(_, i) => i.toString()}
+                         onEndReached={this.refetch.bind(this)}
+                         ListFooterComponent={this.footerIndicator.bind(this)}
+                     />
+                 </View>
+                 {/* footernav */}
+                 <View style={[styles.nav, styles.footer]}>
+                     <TouchableOpacity>
+                         <Icon name="home" size={25} />
+                     </TouchableOpacity>
+                     <TouchableOpacity>
+                         <Icon name="hash" size={25} />
+                     </TouchableOpacity>
+                     <TouchableOpacity>
+                         <Icon name="search" size={25} />
+                     </TouchableOpacity>
+                     <TouchableOpacity>
+                         <Icon name="mail" size={25} />
+                     </TouchableOpacity>
+                 </View>
             </View>
         )
     }
