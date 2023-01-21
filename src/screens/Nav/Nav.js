@@ -6,7 +6,7 @@ import { StyleSheet, TouchableOpacity, View, Image, Text } from "react-native";
 export default function Nav() {
     return (
         <View style={styles.nav}>
-           <TouchableOpacity>
+           <TouchableOpacity onPress={props.navigation.openDrawer}>
              <Icon name="user" size={25}/>
            </TouchableOpacity>
            <Image source={twitter} style={styles.navIconSize}/>
