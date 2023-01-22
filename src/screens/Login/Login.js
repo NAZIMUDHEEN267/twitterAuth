@@ -41,7 +41,7 @@ export class Login extends Component {
                         <TextInput inputName={"logPassword"} secure={true} />
                     </View>
                     {/* call to action button */}
-                    <Button title={"Login"} bg={"#fff"} color={"#0983ed"} switch={this.props.navigation} />
+                    <Button title={"Login"} bg={"#fff"} color={"#0983ed"} switch={this.props.navigation.navigate} />
                     {/* links forgot and new register */}
                     <View style={{flexDirection: "row", justifyContent: "center"}}>
                         <Text style={styles.text_sm}>Forgot password?. </Text>

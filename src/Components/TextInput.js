@@ -1,6 +1,8 @@
-import { StyleSheet, TextInput } from 'react-native';
+import { StyleSheet, TextInput, View, Text } from 'react-native';
 import React, { Component } from 'react';
 import userContext from 'Auth/context';
+import loginCheck from 'Auth/loginCheck';
+import signCheck from 'Auth/signCheck';
 
 export class Input extends Component {
   constructor(props) {
@@ -18,6 +20,7 @@ export class Input extends Component {
       sigPasswordBorderClr: "#999",
       sigMobileBorderClr: "#999",
       sigEmailBorderClr: "#999",
+      error: "",
     }
 
     this.handleTextEvent = this.handleTextEvent.bind(this);
@@ -29,49 +32,48 @@ export class Input extends Component {
   // context api
   static contextType = userContext;
 
-  handleTextEvent (text) {
+  handleTextEvent(text, value) {
     this.setState({[this.props.inputName]: text});
 
-    const { 
-      logUsername, 
-      logPassword, 
-      sigEmail, 
-      sigEmailBorderClr, 
-      sigMobile,
-      sigMobileBorderClr,
-      sigPassword,
-      sigPasswordBorderClr,
-      sigUsername,
-      sigUsernameBorderClr,
-      logPasswordBorderClr,
-      logUserBorderClr
-     } = this.state;
+    // Input checking methods
+    const loginFault = loginCheck(this.state, value.setAccess);
+    const signFault = signCheck(this.state, value.setAccess);
 
-     this.context.setValue(this.state);
+    // Show to user what type of error occurred
+    if (loginFault.error || signFault.error) {
+      this.setState({ error: loginFault.message || signFault.message })
+    } else {
+      this.setState({error: ""});
+    }
 
-    //  checking string pattern of user inputs
-    if(/\s/g.test(logUsername || sigUsername)) {
-      alert("Please remove spaces while typing...")
-    } 
   }
 
   render() {
       return (
-        <TextInput
-          onFocus={() => this.setState({ [this.borderClr]: "#276ec4"})}
-          onBlur={() => this.setState({ [this.borderClr]: "#999" })}
-          maxLength={25}
-          style={(!this.props.borderBtm) ? 
-            [styles.input, styles.mb, { borderColor: this.state[this.borderClr] }] :
-            {...styles.input, ...styles.borderBottom}
-           }
-          autoFocus={this.props.inputName === "logUsername" ? true : false}
-          placeholder={this.props.inputName.slice(3)}
-          value={this.state[this.props.inputName]}
-          onChangeText={this.handleTextEvent}
-          keyboardType={this.props.type}
-          secureTextEntry={this.props.secure ? true : false}
-        />
+        <userContext.Consumer>
+          {
+            (value) => (
+              <View>
+                <TextInput
+                  onFocus={() => this.setState({ [this.borderClr]: "#276ec4" })}
+                  onBlur={() => this.setState({ [this.borderClr]: "#999" })}
+                  maxLength={25}
+                  style={(!this.props.borderBtm) ?
+                    [styles.input, styles.mb, { borderColor: this.state[this.borderClr] }] :
+                    { ...styles.input, ...styles.borderBottom }
+                  }
+                  autoFocus={this.props.inputName === "logUsername" ? true : false}
+                  placeholder={this.props.inputName.slice(3)}
+                  value={this.state[this.props.inputName]}
+                  onChangeText={(text) => this.handleTextEvent(text, value)}
+                  keyboardType={this.props.type}
+                  secureTextEntry={this.props.secure ? true : false}
+                />
+                <Text style={{color: "red", fontWeight: "600"}}>{this.state.error}</Text>
+              </View>
+            )
+          }
+        </userContext.Consumer>
       )
     }
 }

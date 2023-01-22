@@ -1,23 +1,17 @@
 import React, { Component } from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 import userContext from 'Auth/context';
-import loginCheck from 'Auth/loginCheck';
 
 export class Button extends Component {
     constructor(props) {
         super(props);
     }
 
-    confirmUser(e, cb, valuation) {
+    confirmUser(e, valuation) {
         if(!valuation) {
-            alert("Please enter the values...");
             e.preventDefault();
-        }
-
-        if(this.props.title === "Login") {
-            loginCheck(e, cb);
         } else {
-
+            this.props.switch("Tab");
         }
     }
 
@@ -30,7 +24,7 @@ export class Button extends Component {
                             style={[styles.input, styles.btn_cta, { backgroundColor: this.props.bg }]}
                             underlayColor={"#555"}
                             activeOpacity={.8}
-                            onPress={(e) => this.confirmUser(e, value.setAccess, value.access)}
+                            onPress={(e) => this.confirmUser(e, value.access)}
                         >
                             <Text style={[styles.btn_text, { color: this.props.color }]}>{this.props.title}</Text>
                         </TouchableOpacity>

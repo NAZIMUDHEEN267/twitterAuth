@@ -6,12 +6,11 @@ import StackNavigator from "./Navigator/StackNavigator"
 
 const App = function (props) {
 
-    const [value, setValue] = useState({});
     const [access, setAccess] = useState(false);
 
     return (
         <userContext.Provider value={{ 
-            value, setValue, access, setAccess
+           access, setAccess
             }} >
             <NavigationContainer onReady={() => RNBootSplash.hide({ fade: true })}>
                 <StackNavigator />
