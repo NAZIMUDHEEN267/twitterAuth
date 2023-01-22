@@ -45,9 +45,10 @@ export class Input extends Component {
     // Input checking methods
     const loginFault = loginCheck(this.state, value.setAccess);
     const signFault = signCheck(this.state, value.setAccess);
-
+    
     // Show to user what type of error occurred
     if (loginFault.error || signFault.error) {
+      console.log(loginFault);
       this.setState({ error: loginFault.message || signFault.message })
     } else {
       this.setState({error: ""});

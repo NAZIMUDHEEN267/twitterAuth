@@ -13,7 +13,7 @@ const Stack = createStackNavigator();
   const [signed, setSigned] = useState(false);
 
   return (
-    <Stack.Navigator screenOptions={{ header: Nav }} initialRouteName={signed ? "Drawer" : "Login"}>
+    <Stack.Navigator screenOptions={{ header: Nav }} initialRouteName={ "Drawer" }>
       <Stack.Screen name='Login' component={Login} options={{ headerShown: false }} />
       <Stack.Screen name='Drawer' component={DrawerNavigator} />
       <Stack.Screen name='SignUp' component={SignUp} options={{ headerShown: false }} />

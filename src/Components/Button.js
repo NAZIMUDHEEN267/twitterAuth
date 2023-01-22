@@ -11,13 +11,17 @@ export class Button extends Component {
     static contextType = userContext;
     
     confirmUser(e, valuation) {
-        this.props.switch("Drawer");
-        if(!valuation) {
+        console.log(this.props.title);
+        if(!valuation && this.props.title === "Login") {
             alert("Invalid username or password");
-            this.props.switch("Login");
+            this.props.switch.navigate("Login");
+            visible(false);
+        } else if(!valuation && this.props.title === "Sign up"){
+            alert("Please fill correctly");
+            this.props.switch.navigate("SignUp");
             visible(false);
         } else {
-            this.props.switch("Drawer");
+            this.props.switch.navigate("Drawer");
         }
     }
 
