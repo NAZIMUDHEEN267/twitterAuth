@@ -11,7 +11,7 @@
     "boot-splash": "npx react-native generate-bootsplash ./src/assets/Images/twitter-logo.png --background-color=0cabc7 --logo-width=100 --assets-path=assets --flavor=main"
   },
   "dependencies": {
-    "@react-native-community/async-storage": "^1.12.1",
+    "@react-native-async-storage/async-storage": "^1.17.11",
     "@react-navigation/drawer": "^6.5.3",
     "@react-navigation/material-top-tabs": "^6.4.0",
     "@react-navigation/native": "^6.0.16",

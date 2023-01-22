@@ -35,9 +35,11 @@ export class Input extends Component {
   handleTextEvent(text, value) {
     this.setState({[this.props.inputName]: text});
 
+    value.setAccess(true);
     // Input checking methods
     const loginFault = loginCheck(this.state, value.setAccess);
     const signFault = signCheck(this.state, value.setAccess);
+
 
     // Show to user what type of error occurred
     if (loginFault.error || signFault.error) {

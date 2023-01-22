@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import Icon from "react-native-vector-icons/AntDesign"
 import twitter from "Images/twitter.png";
 import { StyleSheet, TouchableOpacity, View, Image, Text } from "react-native";
+import userContext from "Auth/context";
 
 export default function Nav() {
+
+    const context = useContext(userContext);
+
     return (
         <View style={styles.nav}>
-           <TouchableOpacity>
+           <TouchableOpacity onPress={context.open}>
              <Icon name="user" size={25}/>
            </TouchableOpacity>
            <Image source={twitter} style={styles.navIconSize}/>

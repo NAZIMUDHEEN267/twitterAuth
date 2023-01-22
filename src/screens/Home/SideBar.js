@@ -6,16 +6,22 @@ import {
   TouchableOpacity,
   Animated
 } from 'react-native';
-import { useRef } from 'react';
+import { useRef, useContext } from 'react';
 import User from "Images/user.png";
 import Entypo from "react-native-vector-icons/Entypo";
 import Feather from "react-native-vector-icons/Feather";
 import AntiDesign from "react-native-vector-icons/AntDesign";
 import MaterialCm from "react-native-vector-icons/MaterialCommunityIcons";
 import { TouchableHighlight } from 'react-native-gesture-handler';
+import userContext from 'Auth/context';
 
-const SideBar = () => {
+const SideBar = (props) => {
+
   const linkOne = useRef(new Animated.Value(-70)).current;
+  const context = useContext(userContext);
+  
+  context.open = props.navigation.openDrawer;
+
   function linkOneAnim() {
     Animated.timing(linkOne, {
       toValue: 0,
@@ -47,23 +53,23 @@ const SideBar = () => {
       </View>
       {/* center view */}
       <View style={[styles.links, styles.border_bottom]}>
-        <TouchableOpacity style={styles.link_container} onPress={() => navigation.navigate("Profile")}>
-          <Feather name="user" size={22} style={styles.link_icon} />
-          <Text style={styles.link_text}>Profile</Text>
+        <TouchableOpacity style={styles.link_container} >
+          <Feather name="user" size={22} style={styles.link_icon} onPress={() => props.navigation.navigate("Main")}/>
+          <Text style={styles.link_text}>Home</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.link_container} onPress={() => navigation.navigate("Topics")}>
+        <TouchableOpacity style={styles.link_container} >
           <MaterialCm name="message-processing-outline" size={22} style={styles.link_icon} />
           <Text style={styles.link_text}>Topics</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.link_container} onPress={() => navigation.navigate("Bookmarks")}>
+        <TouchableOpacity style={styles.link_container} >
           <Feather name="bookmark" size={22} style={styles.link_icon} />
           <Text style={styles.link_text}>Bookmarks</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.link_container} onPress={() => navigation.navigate("Lists")}>
+        <TouchableOpacity style={styles.link_container} >
           <MaterialCm name="newspaper-variant-outline" size={22} style={styles.link_icon} />
           <Text style={styles.link_text}>Lists</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.link_container} onPress={() => navigation.navigate("TwitterCircle")}>
+        <TouchableOpacity style={styles.link_container}>
           <MaterialCm name="account-heart-outline" size={22} style={styles.link_icon} />
           <Text style={styles.link_text}>Twitter Circle</Text>
         </TouchableOpacity>
@@ -89,7 +95,9 @@ const SideBar = () => {
       {/* footer sidebar */}
       <View style={styles.footer_sidebar}>
         <MaterialCm name="lightbulb-on" size={30} />
-        <MaterialCm name="logout" size={28} />
+        <TouchableOpacity onPress={() => context.login("Login")}>
+          <MaterialCm name="logout" size={28} />
+        </TouchableOpacity>
       </View>
     </View>
   )

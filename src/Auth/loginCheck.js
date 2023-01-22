@@ -1,13 +1,17 @@
 
+import { getUser, tempStorage } from "../db/AsyncConnection";
+
 export default function loginCheck(state, cb) {
 
     const { logUsername, logPassword } = state;
 
-    // check username and password
-    if(logUsername === "user" && logPassword === 'twit') {
-        cb(true);
-    }
+    tempStorage(logUsername);
+    tempStorage(logPassword);
 
+    // check username and password
+    getUser().then(data => {
+        console.log(data);
+    })
 
     // Check String patterns
     if (/\s/g.test(logUsername || logPassword)) {

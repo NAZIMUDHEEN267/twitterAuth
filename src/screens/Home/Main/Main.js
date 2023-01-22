@@ -13,6 +13,7 @@ import axios from 'axios';
 import TextPost from '../Post';
 import ImagePost from '../ImagePost';
 import { API_ROOT, API_KEY, API_PER_PAGE } from "react-native-dotenv";
+import userContext from 'Auth/context';
 
 class Main extends Component {
 
@@ -24,6 +25,8 @@ class Main extends Component {
         loading: false,
         count: 10
     };
+
+    static contextType = userContext;
 
     // get random number
     randomNum = () => Math.round(Math.random() * 30);
@@ -91,6 +94,8 @@ class Main extends Component {
     }
 
     render() {
+        console.log(this.context);
+
         return (
             <View style={styles.parent}>
                 {/* navbar scroll*/}

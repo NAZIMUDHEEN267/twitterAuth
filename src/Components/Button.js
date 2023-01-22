@@ -6,12 +6,18 @@ export class Button extends Component {
     constructor(props) {
         super(props);
     }
+    
+    static contextType = userContext;
 
+    componentDidMount() {
+        this.context.login = this.props.switch;
+    }
+    
     confirmUser(e, valuation) {
+        this.props.switch("Drawer");
         if(!valuation) {
             e.preventDefault();
         } else {
-            this.props.switch("Tab");
         }
     }
 
@@ -34,8 +40,6 @@ export class Button extends Component {
         )
     }
 }
-
-Button.contextType = userContext;
 
 export default Button;
 

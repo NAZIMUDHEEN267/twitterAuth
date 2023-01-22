@@ -4,16 +4,16 @@ import Topics from "Screens/Drawer/Topics";
 import Bookmarks from "Screens/Drawer/Bookmarks";
 import Lists from "Screens/Drawer/Lists";
 import TwitterCircle from "Screens/Drawer/TwitterCircle";
-import Main from "Screens/Home/Main/Main";
 import SideBar from "Screens/Home/SideBar";
-import Nav from "Screens/Nav/Nav";
+import TopNavigator from './TopNavigator';
+
 
 const Drawer = createDrawerNavigator();
 
 export default function DrawerNavigator() {
     return (
-        <Drawer.Navigator drawerContent={SideBar}>
-            <Drawer.Screen name="Main" component={Main} options={{headerShown: false}} />
+        <Drawer.Navigator drawerContent={SideBar} screenOptions={{headerShown: false}}>
+            <Drawer.Screen name="Top" component={TopNavigator}/>
             <Drawer.Screen name="Profile" component={Profile} />
             <Drawer.Screen name="Topics" component={Topics} />
             <Drawer.Screen name="Bookmarks" component={Bookmarks} />
