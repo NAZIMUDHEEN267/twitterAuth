@@ -75,6 +75,7 @@ class Main extends Component {
     // fetching data with 3 api calls
     componentDidMount() {
         this.dataLoad();
+        this.context.login = this.props.navigation.navigate;
     }
 
     // indicator 
@@ -94,7 +95,6 @@ class Main extends Component {
     }
 
     render() {
-        console.log(this.context);
 
         return (
             <View style={styles.parent}>

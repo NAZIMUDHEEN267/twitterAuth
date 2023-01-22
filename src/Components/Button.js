@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 import userContext from 'Auth/context';
+import { visible } from '../db/AsyncConnection';
 
 export class Button extends Component {
     constructor(props) {
@@ -8,16 +9,15 @@ export class Button extends Component {
     }
     
     static contextType = userContext;
-
-    componentDidMount() {
-        this.context.login = this.props.switch;
-    }
     
     confirmUser(e, valuation) {
         this.props.switch("Drawer");
         if(!valuation) {
-            e.preventDefault();
+            alert("Invalid username or password");
+            this.props.switch("Login");
+            visible(false);
         } else {
+            this.props.switch("Drawer");
         }
     }
 

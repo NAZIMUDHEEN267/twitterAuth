@@ -19,6 +19,7 @@ const SideBar = (props) => {
 
   const linkOne = useRef(new Animated.Value(-70)).current;
   const context = useContext(userContext);
+  console.log(context);
   
   context.open = props.navigation.openDrawer;
 

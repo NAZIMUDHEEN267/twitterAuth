@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import userContext from 'Auth/context';
 import loginCheck from 'Auth/loginCheck';
 import signCheck from 'Auth/signCheck';
+import { tempPassword, tempUsername } from '../db/AsyncConnection';
 
 export class Input extends Component {
   constructor(props) {
@@ -35,11 +36,15 @@ export class Input extends Component {
   handleTextEvent(text, value) {
     this.setState({[this.props.inputName]: text});
 
-    value.setAccess(true);
+    if(this.props.inputName === "logUsername") {
+      tempUsername(this.state.logUsername);
+    } else {
+      tempPassword(this.state.logPassword);
+    }
+
     // Input checking methods
     const loginFault = loginCheck(this.state, value.setAccess);
     const signFault = signCheck(this.state, value.setAccess);
-
 
     // Show to user what type of error occurred
     if (loginFault.error || signFault.error) {
