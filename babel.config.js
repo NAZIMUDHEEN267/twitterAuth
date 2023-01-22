@@ -10,7 +10,7 @@ module.exports = {
             "Images": "./src/assets/Images",
             "Components": "./src/Components",
             "Screens": "./src/screens",
-            "Context": "./src/Auth/Context.js"
+            "Auth": "./src/Auth"
           }
         }],
       'react-native-reanimated/plugin',

@@ -1,6 +1,6 @@
 import { StyleSheet, TextInput } from 'react-native';
 import React, { Component } from 'react';
-import userContext from 'Context';
+import userContext from 'Auth/context';
 
 export class Input extends Component {
   constructor(props) {
@@ -47,9 +47,11 @@ export class Input extends Component {
       logUserBorderClr
      } = this.state;
 
+     this.context.setValue(this.state);
+
     //  checking string pattern of user inputs
-    this.context.logUser(logUsername);
     if(/\s/g.test(logUsername || sigUsername)) {
+      alert("Please remove spaces while typing...")
     } 
   }
 

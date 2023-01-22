@@ -13,6 +13,7 @@ export class SignUp extends Component {
 
     constructor(props) {
         super(props);
+        
         this.state = {
             emoji: "\ud83c\udde7\ud83c\uddf9",
             code: "+ 975",
@@ -88,6 +89,5 @@ export class SignUp extends Component {
 }
 
 // props type checking
-SignUp.propTypes = { navigation: PropTypes.object };
 
 export default SignUp;

@@ -20,6 +20,10 @@ export class Login extends Component {
         super(props);
     }
 
+    checkUser(e) {
+        console.log(e);
+    }
+
     // rendering method
     render() {
 
