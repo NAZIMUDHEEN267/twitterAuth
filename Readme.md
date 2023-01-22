@@ -1,7 +1,7 @@
 # TwitterAuth 
 This is just like a authentication blueprint of ***twitter***. This project builded for my learning journey, and i just want to know how react-native navigation, async storage works. Total 3 pages are created on this project ***Home***, ***Login***, ***SignUp***. Image and text data used in unsplash api and regex used for user input checking.
 ## Preview
-![](./src/assets/Preview/sample-1.png)
+![](./src/assets/Preview/sample-1.png =250x250)
 ![](./src/assets/Preview/sample-2.png)
 ![](./src/assets/Preview/sample-3.png)
 ![](./src/assets/Preview/sample-4.png)
